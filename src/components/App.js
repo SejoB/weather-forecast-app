@@ -1,18 +1,24 @@
 import React, { Component } from 'react'
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
+import { BrowserRouter as Router, Route } from "react-router-dom"
+
+// import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import Header from './Header/Header'
-import Forecast from './Forecast/Forecast'
-import theme from '../theme'
+import Home from './Home/Home'
+import Favorites from './Favorites/Favorites'
 
 class App extends Component {
 
   
   render(){ 
   return (
-        <MuiThemeProvider theme={theme}>
-          <Header />
-          <Forecast />
-        </MuiThemeProvider>
+          <Router>
+            {/* <MuiThemeProvider theme={theme}> */}
+              <Header />
+
+              <Route exact path='/' component={Home} />
+              <Route path='/favorites' component={Favorites} />
+            {/* </MuiThemeProvider> */}
+          </Router>
   )
 }
 }

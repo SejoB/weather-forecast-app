@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
-import { FSButton, FSContainer, FSInput, FSGContainer, ItemPaper, CityCard, FSGPaper, FSPaper, FGContainer, FButton, FTypografy, FContainer, } from './Forecast.styles'
+import { FSButton, FSContainer, FSInput, FSGContainer, ItemPaper, CityCard, FSGPaper, FSPaper, FGContainer, FButton, FTypografy, FContainer, } from './Home.styles'
 import { Grid, Typography, CardContent } from '@material-ui/core'
 
 
 
 
-class Forecast extends Component {
+class Home extends Component {
 
 
     render() {
@@ -48,4 +48,4 @@ class Forecast extends Component {
     }
 }
 
-export default Forecast
+export default Home

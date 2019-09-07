@@ -17,5 +17,6 @@ export const HTitle = styled(Typography)({
 })
 export const HButton = styled(Button)({
     color: 'grey',
-    marginLeft: '5px'
+    marginLeft: '5px',
+    textDecoration: 'none'
 })
