@@ -16,27 +16,26 @@ export const FSContainer = styled(Container)({
     minWidth: '360px'
 })
 export const FSButton = styled(Button)({
-    color: 'grey'
+    color: 'grey',
+    boxShadow: 'inset 1px 4px 20px 0px rgba(0, 0, 0, 0.14)',
+    borderRadius: '0px'
 })
 export const FSPaper = styled(Paper)({
     display: 'flex',
     flexDirection: 'column',
-    width: '400px'
+    width: '400px',
+    boxShadow: 'none'
 })
 export const FSInput = styled(Input)({
     paddingLeft: '10px',
-    '&:after': {
-        borderBottom: 'none',
-    },
-    '&:focused': {
-        borderBottom: 'none'
-    }
+    '&:underline:after':{
+    borderBottomColor: 'none'}
 })
 export const FSGContainer = styled(Container)({
     maxWidth: '700px',
     minWidth: '360px',
 })
-export const ItemPaper = styled(Paper)({
+export const ItemCard = styled(Card)({
     height: '100px',
     width: '100px',
     margin: '15px 0 15px 0'
@@ -58,7 +57,8 @@ export const FButton = styled(Button)({
     height: '35px',
     marginTop: '20px',
     whiteSpace: 'nowrap',
-    color: 'grey'
+    color: 'grey',
+    boxShadow: 'inset 1px 4px 20px 0px rgba(0, 0, 0, 0.14)',
 })
 export const FTypografy = styled(Typography)({
     fontSize: '3rem',

@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 
-import { FSButton, FSContainer, FSInput, FSGContainer, ItemPaper, CityCard, FSGPaper, FSPaper, FGContainer, FButton, FTypografy, FContainer, } from './Home.styles'
+import { FSButton, FSContainer,  FSInput, FSGContainer, ItemCard, CityCard, FSGPaper, FSPaper, FGContainer, FButton, FTypografy, FContainer, } from './Home.styles'
 import { Grid, Typography, CardContent } from '@material-ui/core'
-
+import SerchBar from './../SearchBar'
 
 
 
 class Home extends Component {
+
+    state = {
+        FiveDaysForecast: '',
+        OneDayForecast: ''
+    }
 
 
     render() {
@@ -14,8 +19,7 @@ class Home extends Component {
             <React.Fragment>
                 <FSContainer>
                     <FSPaper>
-                        <FSInput placeholder='Enter City' />
-                        <FSButton>Search</FSButton>
+                        <SerchBar/>
                     </FSPaper>
                 </FSContainer>
                 <FSGContainer>
@@ -37,7 +41,7 @@ class Home extends Component {
                         </FContainer>
                         <Grid container justify='space-around' >
                             {[0, 1, 2, 3, 4].map(value => (
-                                <Grid key={value}><ItemPaper /></Grid>
+                                <Grid key={value} item><ItemCard></ItemCard></Grid>
                             ))}
                         </Grid>
                     </FSGPaper>
