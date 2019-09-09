@@ -1,0 +1,25 @@
+[
+    {
+      "LocalObservationDateTime": "2019-09-09T23:51:00+03:00",
+      "EpochTime": 1568062260,
+      "WeatherText": "Mostly clear",
+      "WeatherIcon": 34,
+      "HasPrecipitation": false,
+      "PrecipitationType": null,
+      "IsDayTime": false,
+      "Temperature": {
+        "Metric": {
+          "Value": 26.2,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Imperial": {
+          "Value": 79,
+          "Unit": "F",
+          "UnitType": 18
+        }
+      },
+      "MobileLink": "http://m.accuweather.com/en/il/haifa/213181/current-weather/213181?lang=en-us",
+      "Link": "http://www.accuweather.com/en/il/haifa/213181/current-weather/213181?lang=en-us"
+    }
+  ]
