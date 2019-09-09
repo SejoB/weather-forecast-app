@@ -6,13 +6,14 @@ import axios from 'axios'
 
 
 // const autoCompleteApiUrl = (query) => `${API_HOST}/locations/${API_VERSION}/cities/autocomplete?apikey=${API_KEY}=&Q=${query}`
-const autoCompleteApiUrl = (query) => './../../public/autoComplete.json'
+const autoCompleteApiUrl = () => 'https://raw.githubusercontent.com/SejoB/Sergey-Bekker-04-09-2019/master/public/autoComplete.json'
 
 const getAutoComplete = async (query) => {
-    console.log(query)
+    // console.log(query)
     try{
-            const response = await axios.get(autoCompleteApiUrl(query))
-            const data   = response.data
+            const  response = await axios.get(autoCompleteApiUrl(query))
+            const  data     = await response.data
+            console.log(data)
             return data
     }catch (error){
         console.log(error)
