@@ -10,9 +10,11 @@ import { Grid, Typography, CardContent } from '@material-ui/core'
 class Home extends Component {
 
     state = {
-        locationKey: null,
-        selectedCity: {},
-        inputValue: ''
+        locationKey: '',
+        selectedCity: {
+            city: '',
+            key: ''
+        }
     }
 
 
@@ -22,17 +24,19 @@ class Home extends Component {
         getAutoComplete(inputValue)
             .then((data) => {
                 data.forEach(i => {
-                    tempArr.push({ label: i.LocalizedName })
+                    tempArr.push({ label: i.LocalizedName, key: i.Key })
                 })
                 callback(tempArr)
             })
     }
 
     onCitySelect = (selectedCity) => {
-        console.log(selectedCity)
         if (selectedCity) {
             this.setState({
-                selectedCity
+                selectedCity: {
+                    city: selectedCity.label,
+                    key:  selectedCity.key
+                }
             })
         }
     }
@@ -46,7 +50,7 @@ class Home extends Component {
                         <AsyncSelect
                             value={this.state.selectedCity}
                             loadOptions={loadData}
-                            onChange={(e) => { onCitySelect(e) }}
+                            onChange={(e) => {onCitySelect(e)}}
                             
                         />
                     </FSPaper>
