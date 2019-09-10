@@ -1,25 +1,29 @@
 import React, { Component } from 'react'
 import AsyncSelect from 'react-select/async'
 import getAutoComplete from '../../API/API'
+import { getDailyForecast, getFiveDayForecast } from '../../API/API'
 
-import { FSContainer, FSGContainer, ItemCard, CityCard, FSGPaper, FSPaper, FGContainer, FButton, FTypografy, FContainer, } from './Home.styles'
-import { Grid, Typography, CardContent } from '@material-ui/core'
+import { OneDayContent, OneDayCard, TypographyCity, FiveDayGrid, FiveDayContent, TypographyDate, TypographyTemp, FSContainer, FSGContainer, CityCard, FSGPaper, FSPaper, FGContainer, FButton, FTypografy, FContainer, DayFiveContent, TypographyDay, TypographyMinMax } from './Home.styles'
+import { Card, Grid } from '@material-ui/core'
 
 
 
 class Home extends Component {
 
     state = {
-        locationKey: '',
-        selectedCity: {
-            city: '',
-            key: ''
-        }
+        key: '',
+        city: '',
+        // degree: '°',
+        oneDay: {
+            date: '',
+            temperature: null,
+            text: '',
+            unit: ''
+        },
+        fiveDay: {}
     }
 
-
-
-    loadData = (inputValue, callback) => {
+    loadCityKey = (inputValue, callback) => {
         let tempArr = []
         getAutoComplete(inputValue)
             .then((data) => {
@@ -30,28 +34,82 @@ class Home extends Component {
             })
     }
 
+    loadDailyForecast = (key) => {
+        getDailyForecast(key)
+            .then((data) => {
+                let weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+                const date = new Date(data[0].LocalObservationDateTime)
+                const temperature = (data[0].Temperature.Imperial.Value)
+                const unit = (data[0].Temperature.Imperial.Unit)
+                const text = (data[0].WeatherText)
+                this.setState({
+                    oneDay: {
+                        date: `${weekday[date.getDay()]} ${date.getHours()}:${date.getMinutes()}`,
+                        temperature: temperature,
+                        text: text,
+                        unit: unit
+                    }
+                })
+            })
+        // getFiveDayForecast(key)
+        //     .then((data) => {
+        //         const date        = new Date(data[0].LocalObservationDateTime)
+        //         const temperature = (data[0].Temperature.Imperial.Value)
+        //         const unit        = (data[0].Temperature.Imperial.Unit)
+        //         const text        = (data[0].WeatherText)
+        //         this.setState({
+        //             oneDay:{
+        //                 date: `${date.getDate()}.${date.getMonth()}.${date.getFullYear()} `,
+        //                 temperature: temperature,
+        //                 text: text,
+        //                 unit: unit
+        //             }
+        //         })
+        //     })
+    }
+    // loadFiveDayForecast = (key) => {
+    //     console.log(key)
+    //     getFiveDayForecast(key)
+    //         .then((data) => {
+    //             const date        = new Date(data[0].LocalObservationDateTime)
+    //             const temperature = (data[0].Temperature.Imperial.Value)
+    //             const unit        = (data[0].Temperature.Imperial.Unit)
+    //             const text        = (data[0].WeatherText)
+    //             this.setState({
+    //                 oneDay:{
+    //                     date: `${date.getDate()}.${date.getMonth()}.${date.getFullYear()} `,
+    //                     temperature: temperature,
+    //                     text: text,
+    //                     unit: unit
+    //                 }
+    //             })
+    //         })
+    // }
+
     onCitySelect = (selectedCity) => {
         if (selectedCity) {
+            let city = selectedCity.label
+            let key = selectedCity.key
             this.setState({
-                selectedCity: {
-                    city: selectedCity.label,
-                    key:  selectedCity.key
-                }
+                city: city,
+                key: key
             })
+            this.loadDailyForecast(key)
+            // this.loadFiveDayForecast(key)
         }
     }
 
     render() {
-        const { loadData, onCitySelect } = this
+        const { oneDay, city, degree } = this.state
+        const { loadCityKey, onCitySelect } = this
         return (
             <React.Fragment>
                 <FSContainer>
                     <FSPaper>
                         <AsyncSelect
                             value={this.state.selectedCity}
-                            loadOptions={loadData}
-                            onChange={(e) => {onCitySelect(e)}}
-                            
+                            loadOptions={loadCityKey}
+                            onChange={(e) => { onCitySelect(e) }}
                         />
                     </FSPaper>
                 </FSContainer>
@@ -59,24 +117,33 @@ class Home extends Component {
                     <FSGPaper>
                         <FGContainer container>
                             <Grid item>
-                                <CityCard>
-                                    <CardContent>
-                                        <Typography>Scatterd clouds</Typography>
-                                    </CardContent>
-                                </CityCard>
+                                <OneDayCard>
+                                    <OneDayContent>
+                                        <TypographyCity>{city}</TypographyCity>
+                                        <TypographyDate>{oneDay.date}</TypographyDate>
+                                        <TypographyTemp>{oneDay.temperature} {oneDay.unit}</TypographyTemp>
+                                    </OneDayContent>
+                                </OneDayCard>
                             </Grid>
                             <Grid item>
                                 <FButton>Add to Favorites</FButton>
                             </Grid>
                         </FGContainer>
                         <FContainer>
-                            <FTypografy>Scatterd clouds</FTypografy>
+                            <FTypografy>{oneDay.text}</FTypografy>
                         </FContainer>
-                        <Grid container justify='space-around' >
+                        <FiveDayGrid container justify='space-around'>
                             {[0, 1, 2, 3, 4].map(value => (
-                                <Grid key={value} item><ItemCard></ItemCard></Grid>
+                                <Grid key={value} item>
+                                    <Card>
+                                        <FiveDayContent>
+                                            <TypographyDay>{'Monday'}</TypographyDay>
+                                            <TypographyMinMax>{'30   25'}</TypographyMinMax>
+                                        </FiveDayContent>
+                                    </Card>
+                                </Grid>
                             ))}
-                        </Grid>
+                        </FiveDayGrid>
                     </FSGPaper>
                 </FSGContainer>
             </React.Fragment>
