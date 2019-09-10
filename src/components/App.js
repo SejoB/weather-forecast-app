@@ -15,7 +15,7 @@ class App extends Component {
             {/* <MuiThemeProvider theme={theme}> */}
               <Header />
 
-              <Route exact path='/' component={Home} />
+              <Route exact path='/home' component={Home} />
               <Route path='/favorites' component={Favorites} />
             {/* </MuiThemeProvider> */}
           </Router>
