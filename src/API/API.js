@@ -40,4 +40,5 @@ export const getFiveDayForecast = async (key) => {
     }
 }
 
+
 export default getAutoComplete

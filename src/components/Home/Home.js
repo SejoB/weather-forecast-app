@@ -3,8 +3,9 @@ import AsyncSelect from 'react-select/async'
 import getAutoComplete from '../../API/API'
 import { getDailyForecast, getFiveDayForecast } from '../../API/API'
 
-import { OneDayContent, OneDayCard, TypographyCity, FiveDayGrid, FiveDayContent, TypographyDate, TypographyTemp, FSContainer, FSGContainer, CityCard, FSGPaper, FSPaper, FGContainer, FButton, FTypografy, FContainer, DayFiveContent, TypographyDay, TypographyMinMax } from './Home.styles'
-import { Card, Grid } from '@material-ui/core'
+import { FIcon, AvatarIcon, OneDayContent, OneDayCard, TypographyCity, FiveDayGrid, FiveDayCard, FiveDayContent, TypographyDate, TypographyTemp, FSContainer, FSGContainer, CityCard, FSGPaper, FSPaper, FGContainer, FButton, FTypography, FContainer, DayFiveContent, TypographyDay, TypographyMax, TypographyMin } from './Home.styles'
+import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid'
 
 
 
@@ -18,7 +19,8 @@ class Home extends Component {
             date: '',
             temperature: null,
             text: '',
-            unit: ''
+            unit: '',
+            weatherIcon: null
         },
         fiveDay: {}
     }
@@ -42,12 +44,14 @@ class Home extends Component {
                 const temperature = (data[0].Temperature.Imperial.Value)
                 const unit = (data[0].Temperature.Imperial.Unit)
                 const text = (data[0].WeatherText)
+                const weatherIcon = (data[0].WeatherIcon)
                 this.setState({
                     oneDay: {
                         date: `${weekday[date.getDay()]} ${date.getHours()}:${date.getMinutes()}`,
                         temperature: temperature,
                         text: text,
-                        unit: unit
+                        unit: unit,
+                        weatherIcon: weatherIcon
                     }
                 })
             })
@@ -85,7 +89,13 @@ class Home extends Component {
     //             })
     //         })
     // }
-
+    // getIcon = () => {
+    //     let pic = src{"https://developer.accuweather.com/sites/default/files/" + this.state.oneDay.weatherIcon + "-s.png"
+    //     this.setState({
+    //         weatherIcon: pic
+    //     })
+    // }
+    
     onCitySelect = (selectedCity) => {
         if (selectedCity) {
             let city = selectedCity.label
@@ -96,14 +106,16 @@ class Home extends Component {
             })
             this.loadDailyForecast(key)
             // this.loadFiveDayForecast(key)
+            // this.getIcon()
         }
     }
 
     render() {
-        const { oneDay, city, degree } = this.state
+        const { oneDay, city, degree, weatherIcon } = this.state
         const { loadCityKey, onCitySelect } = this
         return (
             <React.Fragment>
+                <Container>
                 <FSContainer>
                     <FSPaper>
                         <AsyncSelect
@@ -119,9 +131,13 @@ class Home extends Component {
                             <Grid item>
                                 <OneDayCard>
                                     <OneDayContent>
-                                        <TypographyCity>{city}</TypographyCity>
+                                        <TypographyCity>{city}<FIcon></FIcon></TypographyCity>
                                         <TypographyDate>{oneDay.date}</TypographyDate>
                                         <TypographyTemp>{oneDay.temperature} {oneDay.unit}</TypographyTemp>
+                                        <FTypography>
+                                            <AvatarIcon src={"https://developer.accuweather.com/sites/default/files/" + oneDay.weatherIcon + "-s.png"}/>
+                                            {oneDay.text}
+                                        </FTypography>
                                     </OneDayContent>
                                 </OneDayCard>
                             </Grid>
@@ -130,22 +146,26 @@ class Home extends Component {
                             </Grid>
                         </FGContainer>
                         <FContainer>
-                            <FTypografy>{oneDay.text}</FTypografy>
                         </FContainer>
                         <FiveDayGrid container justify='space-around'>
                             {[0, 1, 2, 3, 4].map(value => (
                                 <Grid key={value} item>
-                                    <Card>
+                                    <FiveDayCard>
                                         <FiveDayContent>
+                                            <AvatarIcon src={"https://developer.accuweather.com/sites/default/files/" + oneDay.weatherIcon + "-s.png"}/>
                                             <TypographyDay>{'Monday'}</TypographyDay>
-                                            <TypographyMinMax>{'30   25'}</TypographyMinMax>
+                                            <FiveDayGrid container>
+                                                <TypographyMin>{'25'}</TypographyMin>
+                                                <TypographyMax>{'30'}</TypographyMax>
+                                            </FiveDayGrid>
                                         </FiveDayContent>
-                                    </Card>
+                                    </FiveDayCard>
                                 </Grid>
                             ))}
                         </FiveDayGrid>
                     </FSGPaper>
                 </FSGContainer>
+                </Container>
             </React.Fragment>
 
         )

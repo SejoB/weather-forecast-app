@@ -1,112 +1,179 @@
-import { styled } from '@material-ui/core/styles'
+import { withStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Paper from '@material-ui/core/Paper'
-import Input from '@material-ui/core/Input'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
 import Typography from '@material-ui/core/Typography'
-import CardContent  from '@material-ui/core/CardContent'
+import CardContent from '@material-ui/core/CardContent'
+import Avatar from '@material-ui/core/Avatar'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+
+export const FSContainer = withStyles({
+    root: {
+        display: 'flex',
+        marginTop: '1.25rem',
+        justifyContent: 'center',
+        marginBottom: '1.25rem',
+        minWidth: '22rem',
+    }
+})(Container)
+export const FSPaper = withStyles({
+    root: {
+        display: 'flex',
+        flexDirection: 'column',
+        width: '30rem',
+        boxShadow: 'none'
+    }
+})(Paper)
 
 
-export const FSContainer = styled(Container)({
-    display: 'flex',
-    marginTop: '1.25rem',
-    justifyContent: 'center',
-    marginBottom: '1.25rem',
-    minWidth: '20rem',
-})
-export const FSPaper = styled(Paper)({
-    display: 'flex',
-    flexDirection: 'column',
-    width: '30rem',
-    boxShadow: 'none'
-})
-// export const FSInput = styled(Input)({
-//     paddingLeft: '1.6rem',
-// })
-// export const FSButton = styled(Button)({
-//     color: 'grey',
-//     boxShadow: 'inset 1px 4px 20px 0px rgba(0, 0, 0, 0.14)',
-//     borderRadius: '0px'
-// })
+export const FSGContainer = withStyles({
+    root: {
+        maxWidth: '60rem',
+        minWidth: '22rem',
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+    }
+})(Container)
+export const FSGPaper = withStyles({
+    root: {
+        padding: '1rem',
+    }
+})(Paper)
+export const FGContainer = withStyles({
+    root: {
+        display: 'flex',
+        justifyContent: 'space-between',
+    }
+})(Grid)
+export const OneDayCard = withStyles({
+    root: {
+        minWidth: '15.625rem',
+    }
+})(Card)
+export const OneDayContent = withStyles({
+    root: {
+        minWidth: '15.625rem',
+    }
+})(CardContent)
+export const TypographyCity = withStyles({
+    root: {
+        fontSize: '1.5rem',
+        color: 'darkgrey',
+        fontWeight: 500,
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    }
+})(Typography)
+export const TypographyDate = withStyles({
+    root: {
+        fontSize: '1rem',
+        color: 'grey',
+        fontWeight: 300,
+    }
+})(Typography)
+export const TypographyTemp = withStyles({
+    root: {
+        display: 'flex',
+        fontSize: '4rem',
+        margin: '0 0.3125rem 0 0',
+        justifyContent: 'flex-end',
+        // color: 'darkslategray',
+    }
+})(Typography)
+
+export const AvatarIcon = withStyles({
+    root: {
+        display: 'flex',
+        fontSize: '4rem',
+        margin: '0 0.3125rem 0 0',
+        justifyContent: 'flex-end',
+        // color: 'darkslategray',
+    }
+})(Avatar)
 
 
-export const FSGContainer = styled(Container)({
-    maxWidth: '60rem',
-    minWidth: '22rem',
-    display: 'flex',
-    justifyContent: 'center',
-    flexDirection: 'column'
-})
-export const FSGPaper = styled(Paper)({
-    padding: '1rem'
-})
-export const FGContainer = styled(Grid)({
-    display: 'flex',
-    justifyContent: 'space-between'
-})
-export const OneDayCard = styled(Card)({
-    minWidth: '15.625rem'
-})
-export const OneDayContent = styled(CardContent)({
-    minWidth: '15.625rem'
-})
-export const TypographyCity = styled(Typography)({
-    fontSize: '1.5rem',
-    color: 'darkgrey',
-    fontWeight: 500
-})
-export const TypographyDate = styled(Typography)({
-    fontSize: '1rem',
-    color: 'grey',
-    fontWeight: 300
-})
-export const TypographyTemp = styled(Typography)({
-    display: 'flex',
-    fontSize: '4rem',
-    margin: '0 0.3125rem 0 0',
-    justifyContent: 'flex-end',
-    // color: 'darkslategray'
-})
+export const FButton = withStyles({
+    root: {
+        height: '2.2rem',
+        marginTop: '1.25rem',
+        whiteSpace: 'nowrap',
+        color: 'grey',
+        boxShadow: '0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12)'
+    }
+})(Button)
+export const FIcon = withStyles({
+    root: {
+    }
+})(FavoriteIcon)
 
 
-export const FButton = styled(Button)({
-    height: '2.2rem',
-    marginTop: '1.25rem',
-    whiteSpace: 'nowrap',
-    color: 'grey',
-    boxShadow: 'inset 1px 4px 20px 0px rgba(0, 0, 0, 0.14)',
-})
+export const FContainer = withStyles({
+    root: {
+        display: 'flex',
+        justifyContent: 'center',
+        marginBottom: '0.625rem',
+    }
+})(Container)
+export const FTypography = withStyles({
+    root: {
+        fontSize: '1.5rem',
+        display: 'flex',
+        fontFamily: 'inherit',
+        justifyContent: 'flex-end'
+    }
+})(Typography)
 
 
-export const FContainer = styled(Container)({
-    display: 'flex',
-    justifyContent: 'center',
-    marginBottom: '0.625rem'
-})
-export const FTypografy = styled(Typography)({
-    fontSize: '3rem',
-    display: 'inline-block',
-    fontFamily: 'inherit',
-    whiteSpace: 'nowrap',
-    marginTop: '0.08125rem'
-})
-
-
-export const FiveDayGrid = styled(Grid)({
-    justifyContent: 'space-around'
+export const FiveDayGrid = withStyles({
+    root: {
+        justifyContent: 'space-between',
+        display: 'flex',
+        marginTop: '1.5rem'
+        
+    }
     // change to display block
-})
-export const FiveDayContent = styled(CardContent)({
-    display: 'flex',
-    justifyContent: 'space-around'
-    
-})
-export const TypographyDay = styled(Typography)({
-    display: 'flex'
-})
-export const TypographyMinMax = styled(Typography)({
-    display: 'flex'
-    
-})
+})(Grid)
+export const FiveDayCard = withStyles({
+    root: {
+        // padding: '1rem'
+    }
+    // change to display block
+})(Card)
+export const FiveDayContent = withStyles({
+    root: {
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        // padding: '0',
+        alignItems: 'center',
+        // "&:last-child": {
+        //     paddingRight: 5
+        //   }
+    },
+
+})(CardContent)
+export const TypographyDay = withStyles({
+    root: {
+        display: 'flex',
+        fontWeight: 500,
+        color: 'darkgrey'
+        
+    }
+})(Typography)
+export const TypographyMin = withStyles({
+    root: {
+        fontWeight: 300,
+        color: 'darkgrey'
+    }
+})(Typography)
+export const TypographyMax = withStyles({
+    root: {
+        fontWeight: 300,
+        color: 'grey'
+        
+    }
+})(Typography)

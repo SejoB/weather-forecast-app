@@ -2,9 +2,13 @@ import { createMuiTheme } from "@material-ui/core/styles";
 
 export default createMuiTheme({
   overrides: {
-    root: {
-      '&:label.Mui-focused': {
-        color: 'green',
+    MuiCardContent: {
+      root: {
+        borderBottomColor: 'none',
+        "&:last-child": {
+          padding: '1rem !important',
+          // paddingBottom: '0.5rem'
+        }
       }
     }
   }

@@ -1,25 +1,28 @@
 import React from 'react'
 
-
-import { Grid, Paper } from '@material-ui/core'
-
-import ItemCard from './Favorites.styles'
+import Grid from '@material-ui/core/Grid'
+import { FContainer, ItemCard, FTypography, FPaper, FGrid, FDIcon } from './Favorites.styles'
 
 
 
 const Favorites = () => {
+    const arr = [1, 2, 3, 4, 5, 6, 7, 8]
+
+    return <FContainer>
+                <FPaper>
+                    <FGrid container>
+                        {arr.map(value => (
+                            <Grid item key={value}>
+                                <ItemCard>
+                                    <FTypography>City<FDIcon/></FTypography>
+                                </ItemCard>
+                            </Grid>
+                        ))}
+                    </FGrid>
+                </FPaper>
+            </FContainer>
 
 
-    return <div>
-        <Paper>
-            <Grid container justify='space-around' >
-                {[0, 1, 2, 3, 4, 5, 6, 7, 8].map(value => (
-                    <Grid item key={value}><ItemCard></ItemCard></Grid>
-                ))}
-            </Grid>
-        </Paper>
-
-    </div>
 }
 
 export default Favorites
