@@ -7,7 +7,6 @@ export default createMuiTheme({
         borderBottomColor: 'none',
         "&:last-child": {
           padding: '1rem !important',
-          // paddingBottom: '0.5rem'
         }
       }
     }

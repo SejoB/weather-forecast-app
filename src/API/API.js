@@ -34,6 +34,7 @@ export const getFiveDayForecast = async (key) => {
     try {
         const response = await axios.get(autoCompleteUrlFiveDay(key))
         const data = await response.data
+        console.log(data)
         return data
     } catch (error) {
         console.log(error)

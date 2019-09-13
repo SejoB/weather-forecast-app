@@ -81,7 +81,6 @@ export const TypographyTemp = withStyles({
         fontSize: '4rem',
         margin: '0 0.3125rem 0 0',
         justifyContent: 'flex-end',
-        // color: 'darkslategray',
     }
 })(Typography)
 
@@ -91,7 +90,6 @@ export const AvatarIcon = withStyles({
         fontSize: '4rem',
         margin: '0 0.3125rem 0 0',
         justifyContent: 'flex-end',
-        // color: 'darkslategray',
     }
 })(Avatar)
 
@@ -110,14 +108,6 @@ export const FIcon = withStyles({
     }
 })(FavoriteIcon)
 
-
-export const FContainer = withStyles({
-    root: {
-        display: 'flex',
-        justifyContent: 'center',
-        marginBottom: '0.625rem',
-    }
-})(Container)
 export const FTypography = withStyles({
     root: {
         fontSize: '1.5rem',
@@ -148,11 +138,8 @@ export const FiveDayContent = withStyles({
         display: 'flex',
         justifyContent: 'center',
         flexDirection: 'column',
-        // padding: '0',
         alignItems: 'center',
-        // "&:last-child": {
-        //     paddingRight: 5
-        //   }
+        minWidth: '4rem'
     },
 
 })(CardContent)
@@ -166,13 +153,13 @@ export const TypographyDay = withStyles({
 })(Typography)
 export const TypographyMin = withStyles({
     root: {
-        fontWeight: 300,
+        fontWeight: 400,
         color: 'darkgrey'
     }
 })(Typography)
 export const TypographyMax = withStyles({
     root: {
-        fontWeight: 300,
+        fontWeight: 400,
         color: 'grey'
         
     }
