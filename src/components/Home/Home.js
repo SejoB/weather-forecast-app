@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import AsyncSelect from 'react-select/async'
 import getAutoComplete from '../../API/API'
 import { getDailyForecast, getFiveDayForecast } from '../../API/API'
+// import icons from './weather_forecast/src/media/weatherIcons' 
 
 import { FIcon, AvatarIcon, OneDayContent, OneDayCard, TypographyCity, FiveDayGrid, FiveDayCard, FiveDayContent, TypographyDate, TypographyTemp, FSContainer, FSGContainer, FSGPaper, FSPaper, FGContainer, FButton, FTypography, TypographyDay, TypographyMax, TypographyMin } from './Home.styles'
 import Container from '@material-ui/core/Container'
@@ -19,7 +20,7 @@ class Home extends Component {
             temperature: null,
             text: '',
             unit: '',
-            weatherIcon: ''
+            weatherIcon: null
         },
         daily: []
     }
@@ -43,14 +44,14 @@ class Home extends Component {
                 const temperature = (data[0].Temperature.Imperial.Value)
                 const unit        = (data[0].Temperature.Imperial.Unit)
                 const text        = (data[0].WeatherText)
-                const weatherIcon = (data[0].WeatherIcon)
+                const oneDayIcon =  (data[0].WeatherIcon)
                 this.setState({
                     oneDay: {
                         date: `${weekday[date.getDay()]} ${date.getHours()}:${date.getMinutes()}`,
                         temperature: temperature,
                         text: text,
                         unit: unit,
-                        weatherIcon: weatherIcon
+                        oneDayIcon: oneDayIcon
                     }
                 })
             })
@@ -64,23 +65,25 @@ class Home extends Component {
                     const date        = new Date(i.Date)
                     const max         = i.Temperature.Maximum.Value
                     const min         = i.Temperature.Minimum.Value
-                    const weatherIcon = (i.Day.Icon)
+                    const fiveDayIcon = i.Day.Icon
                     arr.push({
                         date: `${weekday[date.getDay()]}`,
                         min: min,
                         max: max,
-                        weatherIcon: weatherIcon
+                        fiveDayIcon: fiveDayIcon
                     })
+
                 })
                 this.setState(
                     {
                         daily: arr
                     }
-                )
+                    )
+                    console.log(this.state.daily[3].fiveDayIcon)
             })      
     }
 
-
+    
     onCitySelect = (selectedCity) => {
         if (selectedCity) {
             let city = selectedCity.label
@@ -96,7 +99,7 @@ class Home extends Component {
 
     render() {
         const { oneDay, daily, city } = this.state
-        console.log(daily.weatherIcon, oneDay.weatherIcon)
+        console.log(daily[3], oneDay.oneDayIcon)
         const { loadCityKey, onCitySelect } = this
         return (
             <React.Fragment>
@@ -120,7 +123,7 @@ class Home extends Component {
                                             <TypographyDate>{oneDay.date}</TypographyDate>
                                             <TypographyTemp>{oneDay.temperature} {oneDay.unit}{'°'}</TypographyTemp>
                                             <FTypography component='div'>
-                                                <AvatarIcon src={"../../../public/weatherIcons" + oneDay.weatherIcon + "-s.png"} />
+                                                {/* <AvatarIcon src={"../../media/weatherIcons/34-s.png"} alt='icon' /> */}
                                                 {oneDay.text}
                                             </FTypography>
                                         </OneDayContent>
@@ -135,7 +138,9 @@ class Home extends Component {
                                     return <Grid key={key} item>
                                         <FiveDayCard>
                                             <FiveDayContent>
-                                                <AvatarIcon src={"../../../public/weatherIcons" + d.weatherIcon + "-s.png"} />
+                                                {/* <AvatarIcon  src={"https://github.com/SejoB/Sergey-Bekker-04-09-2019/tree/919d69579efd59501e245baa6f36350ff5c1e380/public/weatherIcons/03-s.png"} alt='icon' />
+                                                <AvatarIcon  src={"https://github.com/SejoB/Sergey-Bekker-04-09-2019/tree/919d69579efd59501e245baa6f36350ff5c1e380/public/weatherIcons/03-s.png"} alt='icon' /> */}
+                                                <AvatarIcon  src={"https://raw.githubusercontent.com/SejoB/Sergey-Bekker-04-09-2019/919d69579efd59501e245baa6f36350ff5c1e380/public/weatherIcons/" +d.fiveDayIcon+ "-s.png"} alt='icon' />
                                                 <TypographyDay>{d.date}</TypographyDay>
                                                 <FiveDayGrid container>
                                                     <TypographyMin>{d.min}{'°'}</TypographyMin>
