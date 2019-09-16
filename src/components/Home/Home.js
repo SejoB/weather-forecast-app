@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import AsyncSelect from 'react-select/async'
 import getAutoComplete from '../../API/API'
-import { getDailyForecast, getFiveDayForecast } from '../../API/API'
+import { getDailyForecast, getFiveDayForecast, getGeoPosition } from '../../API/API'
 
 import { FIcon, AvatarIcon, OneDayContent, OneDayCard, TypographyCity, FiveDayGrid, FiveDayCard, FiveDayContent, TypographyDate, TypographyTemp, FSContainer, FSGContainer, FSGPaper, FSPaper, FGContainer, FButton, FTypography, TypographyDay, TypographyMax, TypographyMin } from './Home.styles'
 import Container from '@material-ui/core/Container'
@@ -12,6 +12,7 @@ import Grid from '@material-ui/core/Grid'
 class Home extends Component {
 
     state = {
+        prevState: '',
         key: '',
         city: '',
         oneDay: {
@@ -24,7 +25,90 @@ class Home extends Component {
         daily: []
     }
 
-    loadCityKey = (inputValue, callback) => {
+    componentDidMount() {
+        this.getPosition()
+    }
+    componentDidUpdate(prevProps, prevState) {
+        let key = this.state.key
+        console.log(this.state.key, prevState.key)
+        if (this.state.key !== prevState.key) {
+            this.loadDailyForecast(key)
+            this.loadFiveDayForecast(key)
+        }
+    }
+    getPosition = () => {
+        const getLatLon = function (options) {
+            return new Promise(function (resolve, reject) {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(resolve, reject, options)
+                } else {
+                    alert('Geolocation is not enabled')
+                }
+            })
+        }
+        getLatLon()
+            .then((position) => {
+                const lat = position.coords.latitude
+                const lon = position.coords.longitude
+                getGeoPosition(lat, lon)
+                    .then((data) => {
+                        this.setState({
+                            key:  data.Key,
+                            city: data.LocalizedName
+                        })
+                    })
+            })
+            .catch((err) => {
+                console.error(err.message)
+            })
+    }
+    loadDailyForecast = (key) => {
+        getDailyForecast(key)
+        .then((data) => {
+            console.log(data)
+            const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+            const date = new Date(data[0].LocalObservationDateTime)
+            const temperature = (data[0].Temperature.Imperial.Value)
+            const unit = (data[0].Temperature.Imperial.Unit)
+            const text = (data[0].WeatherText)
+            const oneDayIcon = (data[0].WeatherIcon)
+            this.setState({
+                oneDay: {
+                    date: `${weekday[date.getDay()]} ${date.getHours()}:${date.getMinutes()}`,
+                    temperature: temperature,
+                    text: text,
+                    unit: unit,
+                    oneDayIcon: oneDayIcon
+                    }
+                })
+            })
+    }
+    loadFiveDayForecast = (key) => {
+        getFiveDayForecast(key)
+        .then((data) => {
+                console.log(data)
+                const weekday = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+                let arr = []
+                data.DailyForecasts.forEach(i => {
+                    const date = new Date(i.Date)
+                    const max = i.Temperature.Maximum.Value
+                    const min = i.Temperature.Minimum.Value
+                    const fiveDayIcon = i.Day.Icon
+                    arr.push({
+                        date: `${weekday[date.getDay()]}`,
+                        min: min,
+                        max: max,
+                        fiveDayIcon: fiveDayIcon
+                    })
+                })
+                this.setState(
+                    {
+                        daily: arr
+                    }
+                    )
+                })
+    }
+    loadCitiesList = (inputValue, callback) => {
         let tempArr = []
         getAutoComplete(inputValue)
             .then((data) => {
@@ -34,70 +118,21 @@ class Home extends Component {
                 callback(tempArr)
             })
     }
-
-    loadDailyForecast = (key) => {
-        getDailyForecast(key)
-            .then((data) => {
-                const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-                const date        = new Date(data[0].LocalObservationDateTime)
-                const temperature = (data[0].Temperature.Imperial.Value)
-                const unit        = (data[0].Temperature.Imperial.Unit)
-                const text        = (data[0].WeatherText)
-                const oneDayIcon =  (data[0].WeatherIcon)
-                this.setState({
-                    oneDay: {
-                        date: `${weekday[date.getDay()]} ${date.getHours()}:${date.getMinutes()}`,
-                        temperature: temperature,
-                        text: text,
-                        unit: unit,
-                        oneDayIcon: oneDayIcon
-                    }
-                })
-            })
-    }
-    loadFiveDayForecast = (key) => {
-        getFiveDayForecast(key)
-            .then((data) => {
-                const weekday = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-                let arr = []
-                data.DailyForecasts.forEach(i => {
-                    const date        = new Date(i.Date)
-                    const max         = i.Temperature.Maximum.Value
-                    const min         = i.Temperature.Minimum.Value
-                    const fiveDayIcon = i.Day.Icon
-                    arr.push({
-                        date: `${weekday[date.getDay()]}`,
-                        min: min,
-                        max: max,
-                        fiveDayIcon: fiveDayIcon
-                    })
-
-                })
-                this.setState(
-                    {
-                        daily: arr
-                    }
-                )
-            })      
-    }
-
-    
     onCitySelect = (selectedCity) => {
         if (selectedCity) {
             let city = selectedCity.label
-            let key = selectedCity.key
+            let key =  selectedCity.key
             this.setState({
                 city: city,
                 key: key
             })
-            this.loadDailyForecast(key)
-            this.loadFiveDayForecast(key)
         }
     }
 
+
     render() {
         const { oneDay, daily, city } = this.state
-        const { loadCityKey, onCitySelect } = this
+        const { loadCitiesList, onCitySelect } = this
         return (
             <React.Fragment>
                 <Container>
@@ -105,7 +140,7 @@ class Home extends Component {
                         <FSPaper>
                             <AsyncSelect
                                 value={this.state.selectedCity}
-                                loadOptions={loadCityKey}
+                                loadOptions={loadCitiesList}
                                 onChange={(e) => { onCitySelect(e) }}
                             />
                         </FSPaper>
@@ -120,7 +155,7 @@ class Home extends Component {
                                             <TypographyDate>{oneDay.date}</TypographyDate>
                                             <TypographyTemp>{oneDay.temperature} {oneDay.unit}{'°'}</TypographyTemp>
                                             <FTypography component='div'>
-                                                <AvatarIcon src={"https://raw.githubusercontent.com/SejoB/Sergey-Bekker-04-09-2019/master/public/weatherIcons/"+ oneDay.oneDayIcon + "-s.png"} alt='icon' />
+                                                <AvatarIcon src={"https://raw.githubusercontent.com/SejoB/Sergey-Bekker-04-09-2019/master/public/weatherIcons/" + oneDay.oneDayIcon + "-s.png"} alt='icon' />
                                                 {oneDay.text}
                                             </FTypography>
                                         </OneDayContent>
@@ -135,7 +170,7 @@ class Home extends Component {
                                     return <Grid key={key} item>
                                         <FiveDayCard>
                                             <FiveDayContent>
-                                                <AvatarIcon  src={"https://raw.githubusercontent.com/SejoB/Sergey-Bekker-04-09-2019/master/public/weatherIcons/"+ d.fiveDayIcon + "-s.png"} alt='icon' />
+                                                <AvatarIcon src={"https://raw.githubusercontent.com/SejoB/Sergey-Bekker-04-09-2019/master/public/weatherIcons/" + d.fiveDayIcon + "-s.png"} alt='icon' />
                                                 <TypographyDay>{d.date}</TypographyDay>
                                                 <FiveDayGrid container>
                                                     <TypographyMin>{d.min}{'°'}</TypographyMin>
