@@ -122,7 +122,8 @@ export const FiveDayGrid = withStyles({
     root: {
         justifyContent: 'space-between',
         display: 'flex',
-        marginTop: '1.5rem'
+        marginTop: '1.5rem',
+        // minHeight: '10rem'
         
     }
     // change to display block
