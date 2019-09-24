@@ -9,7 +9,9 @@ import  Card from '@material-ui/core/Card'
 
 
 export const FDIcon = withStyles({
-
+    root: {
+        cursor: 'pointer'
+    }
 })(DeleteIcon)
 export const FContainer = withStyles({
     root: {
@@ -32,7 +34,8 @@ export const FTypography = withStyles({
         fontWeight: 500,
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        cursor: 'pointer'
     }
 })(Typography)
 export const FGrid = withStyles({

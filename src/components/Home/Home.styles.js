@@ -1,24 +1,24 @@
 import { withStyles } from '@material-ui/core/styles'
+import theme from './../../theme'
 import Container from '@material-ui/core/Container'
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
-import Card from '@material-ui/core/Card'
 import Typography from '@material-ui/core/Typography'
-import CardContent from '@material-ui/core/CardContent'
 import Avatar from '@material-ui/core/Avatar'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 
-export const FSContainer = withStyles({
+
+export const SearchContainer = withStyles({
     root: {
         display: 'flex',
         marginTop: '1.25rem',
         justifyContent: 'center',
         marginBottom: '1.25rem',
-        minWidth: '22rem',
+        // minWidth: '22rem',
     }
 })(Container)
-export const FSPaper = withStyles({
+export const SearchPaper = withStyles({
     root: {
         display: 'flex',
         flexDirection: 'column',
@@ -26,38 +26,46 @@ export const FSPaper = withStyles({
         boxShadow: 'none'
     }
 })(Paper)
-
-
-export const FSGContainer = withStyles({
+export const ForecastContainer = withStyles({
     root: {
         maxWidth: '60rem',
-        minWidth: '22rem',
         display: 'flex',
         justifyContent: 'center',
         flexDirection: 'column',
     }
 })(Container)
-export const FSGPaper = withStyles({
+export const ForecastPaper = withStyles({
     root: {
         padding: '1rem',
     }
 })(Paper)
-export const FGContainer = withStyles({
+export const OneDayGridContainer = withStyles({
     root: {
-        display: 'flex',
         justifyContent: 'space-between',
+        [theme.breakpoints.up('xs')]: {
+            width:'100%'
+        }
     }
 })(Grid)
-export const OneDayCard = withStyles({
+export const OneDayGridItem = withStyles({
     root: {
-        minWidth: '15.625rem',
     }
-})(Card)
-export const OneDayContent = withStyles({
+})(Grid)
+export const OneDayPaper = withStyles({
     root: {
-        minWidth: '15.625rem',
+        padding: '0.5rem 1rem',
+        minWidth: '16.875rem',
+        [theme.breakpoints.down('xs')]: {
+            width:'100%'
+        }
     }
-})(CardContent)
+})(Paper)
+export const FavoriteHiddenBtn = withStyles({
+    root: {
+        color: 'grey',
+        borderRadius: '25px'
+    }
+})(Button)
 export const TypographyCity = withStyles({
     root: {
         fontSize: '1.5rem',
@@ -65,7 +73,8 @@ export const TypographyCity = withStyles({
         fontWeight: 500,
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        whiteSpace: 'nowrap'
     }
 })(Typography)
 export const TypographyDate = withStyles({
@@ -83,28 +92,29 @@ export const TypographyTemp = withStyles({
         justifyContent: 'flex-end',
     }
 })(Typography)
-
 export const AvatarIcon = withStyles({
     root: {
-        display: 'flex',
-        fontSize: '4rem',
-        margin: '0 0.3125rem 0 0',
-        justifyContent: 'flex-end',
+        alignSelf: 'center'
     }
 })(Avatar)
-
-
-export const FButton = withStyles({
+export const FButton =  withStyles({
     root: {
         height: '2.2rem',
         marginTop: '1.25rem',
         whiteSpace: 'nowrap',
         color: 'grey',
-        boxShadow: '0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12)'
+        boxShadow: '0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12)',
+        [theme.breakpoints.down('xs')]: {
+            display: 'none'
+          }
     }
 })(Button)
 export const FIcon = withStyles({
     root: {
+        display: 'none',
+        [theme.breakpoints.down('xs')]: {
+            display: 'inline-block'
+        }
     }
 })(FavoriteIcon)
 
@@ -116,52 +126,53 @@ export const FTypography = withStyles({
         justifyContent: 'flex-end'
     }
 })(Typography)
-
-
+export const FiveDayGridCont = withStyles({
+    root: {
+        justifyContent: 'space-evenly',
+        display: 'flex',
+        marginTop: '3rem',
+        [theme.breakpoints.down('xs')]: {
+            display: 'flex',
+            flexDirection: 'column',
+            overflow: 'scroll',
+            height: '14.6875rem',
+            flexWrap: 'inherit',
+            justifyContent: 'flex-start',
+            marginTop: '1rem'
+        }
+    }
+})(Grid)
+export const FiveDayGridItem = withStyles({
+    root: {
+        display: 'flex',
+        flexDirection: 'column',
+        minWidth: '4rem'
+    }
+})(Grid)
 export const FiveDayGrid = withStyles({
     root: {
-        justifyContent: 'space-between',
         display: 'flex',
-        marginTop: '1.5rem',
-        // minHeight: '10rem'
-        
+        justifyContent: 'space-around'
     }
-    // change to display block
 })(Grid)
-export const FiveDayCard = withStyles({
-    root: {
-        // padding: '1rem'
-    }
-    // change to display block
-})(Card)
-export const FiveDayContent = withStyles({
-    root: {
-        display: 'flex',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        alignItems: 'center',
-        minWidth: '4rem'
-    },
-
-})(CardContent)
 export const TypographyDay = withStyles({
     root: {
-        display: 'flex',
         fontWeight: 500,
-        color: 'darkgrey'
-        
+        color: 'darkgrey',
+        alignSelf: 'center'
     }
 })(Typography)
 export const TypographyMin = withStyles({
     root: {
         fontWeight: 400,
-        color: 'darkgrey'
+        color: 'darkgrey',
+        alignSelf: 'center'
     }
 })(Typography)
 export const TypographyMax = withStyles({
     root: {
         fontWeight: 400,
-        color: 'grey'
-        
+        color: 'grey',
+        alignSelf: 'center'
     }
 })(Typography)
