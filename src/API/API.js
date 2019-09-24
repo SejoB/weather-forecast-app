@@ -15,7 +15,6 @@ const autoCompleteUrlGeoPosition = (lat, lon)   => `${API_HOST}/locations/${API_
 // const autoCompleteUrlGeoPosition = () => 'https://raw.githubusercontent.com/SejoB/Sergey-Bekker-04-09-2019/master/public/5dayWeather.json'
 
 export const getGeoPosition = async (lat, lon) => {
-    console.log(lat, lon)
     try {
         const response = await axios.get(autoCompleteUrlGeoPosition(lat, lon))
         const data = await response.data
@@ -23,7 +22,6 @@ export const getGeoPosition = async (lat, lon) => {
     } catch (error) {
         console.log(error)
     }
-
 }
 const getAutoComplete = async (query) => {
     try {
@@ -38,7 +36,6 @@ export const getDailyForecast = async (key) => {
     try {
         const response = await axios.get(autoCompleteUrlDaily(key))
         const data = await response.data
-        console.log(data)
         return data
     } catch (error) {
         console.log(error)
