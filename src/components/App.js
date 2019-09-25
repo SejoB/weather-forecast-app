@@ -127,7 +127,6 @@ class App extends Component {
     return (
       <React.Fragment>
       <HashRouter>
-        {/* <MuiThemeProvider theme={theme}> */}
           <Header />
           <Switch>
             <Route  exact path='/'
@@ -138,7 +137,6 @@ class App extends Component {
             <Route  path='/favorites' render={() => <Favorites loadFavorites={this.getFavoriteCity} />} />
             <Route  exact path='/' component={Home}/>
           </Switch>
-        {/* </MuiThemeProvider> */}
       </HashRouter>
         </React.Fragment>
     )
