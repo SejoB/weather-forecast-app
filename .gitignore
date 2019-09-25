@@ -12,6 +12,7 @@
 /build
 production.env
 .env
+.env
 
 # misc
 development.env
