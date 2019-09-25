@@ -48,7 +48,7 @@ class App extends Component {
         const lat = position.coords.latitude
         const lon = position.coords.longitude
         getGeoPosition(lat, lon)
-        .then((data) => {
+          .then((data) => {
             this.setState({
               key: data.Key,
               city: data.LocalizedName
@@ -125,7 +125,6 @@ class App extends Component {
 
   render() {
     return (
-      <React.Fragment>
       <HashRouter>
           <Header />
           <Switch>
@@ -138,7 +137,6 @@ class App extends Component {
             <Route  exact path='/' component={Home}/>
           </Switch>
       </HashRouter>
-        </React.Fragment>
     )
   }
 }
