@@ -45,8 +45,7 @@ class Favorites extends Component {
                     {favorites.map((value, key) => (
                         <Grid item key={key}>
                             <ItemCard>
-                                <FTypography onClick={() => this.loadFavoriteCityHandler(value)} >{value[0]}</FTypography>
-                                <FDIcon onClick={() => this.deleteFavoriteHandler(value[0])} />
+                                <FTypography onClick={() => this.loadFavoriteCityHandler(value)} >{value[0]}<FDIcon onClick={() => this.deleteFavoriteHandler(value[0])} /></FTypography>
                             </ItemCard>
                         </Grid>
                     ))}

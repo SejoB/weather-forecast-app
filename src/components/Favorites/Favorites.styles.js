@@ -10,8 +10,7 @@ import  Card from '@material-ui/core/Card'
 
 export const FDIcon = withStyles({
     root: {
-        cursor: 'pointer',
-        color: 'darkgrey'
+        cursor: 'pointer'
     }
 })(DeleteIcon)
 export const FContainer = withStyles({
@@ -22,13 +21,10 @@ export const FContainer = withStyles({
 })(Container)
 export const ItemCard = withStyles({
     root: {
-        height: '4rem',
+        height: '3rem',
         width: '20rem',
         margin: '1rem 0 1rem 0',
         padding: '1rem',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center'
     }
 })(Card)
 export const FTypography = withStyles({
