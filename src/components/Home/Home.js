@@ -6,7 +6,7 @@ import { FIcon, AvatarIcon, FavoriteHiddenBtn, OneDayPaper, TypographyCity, Five
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import AsyncSelect from 'react-select/async'
-import { Button, Paper } from '@material-ui/core'
+import { Paper } from '@material-ui/core'
 
 
 class Home extends Component {

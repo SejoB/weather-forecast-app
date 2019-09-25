@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button'
 
 export const AppContainer = withStyles({
     root: {
-        background: 'white',
+        // background: 'white',
         position: 'static',
         boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.12)'
     }

@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
 import { HashRouter, Route, Switch } from "react-router-dom"
 
-import getAutoComplete from './../API/API'
 import { getDailyForecast, getFiveDayForecast, getGeoPosition } from './../API/API'
-
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
-import theme from '../theme'
 import Header from './Header/Header'
 import Home from './Home/Home'
 import Favorites from './Favorites/Favorites'
@@ -41,7 +37,7 @@ class App extends Component {
     const getLatLon = function (options) {
       return new Promise(function (resolve, reject) {
         if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(resolve, reject, options)
+            navigator.geolocation.getCurrentPosition(resolve, reject, options)
         } else {
           alert('Geolocation is not enabled')
         }
@@ -130,7 +126,6 @@ class App extends Component {
   render() {
     return (
       <HashRouter>
-        <MuiThemeProvider theme={theme}>
           <Header />
           <Switch>
             <Route  exact path='/'
@@ -141,7 +136,6 @@ class App extends Component {
             <Route  path='/favorites' render={() => <Favorites loadFavorites={this.getFavoriteCity} />} />
             <Route  exact path='/' component={Home}/>
           </Switch>
-        </MuiThemeProvider>
       </HashRouter>
     )
   }
