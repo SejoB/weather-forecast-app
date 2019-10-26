@@ -1,40 +1,36 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-import getAutoComplete from '../../API/API'
+import { loadDailyForecast, loadFiveDayForecast, loadCitiesList, getSelectedCity } from './Home.actions'
+import { addToFavorites } from '../Favorites/Favorites.actions'
 
-import { FIcon, AvatarIcon, FavoriteHiddenBtn, OneDayPaper, TypographyCity, FiveDayGrid, FiveDayGridCont, FiveDayGridItem, TypographyDate, TypographyTemp, SearchContainer, ForecastContainer, ForecastPaper, SearchPaper, OneDayGridContainer, FButton, FTypography, TypographyDay, TypographyMax, TypographyMin } from './Home.styles'
-import Container from '@material-ui/core/Container'
-import Grid from '@material-ui/core/Grid'
+
+import { FIcon, AvatarIcon, FavoriteHiddenBtn, OneDayPaper, TypographyCity, FiveDayGrid, 
+         FiveDayGridCont, FiveDayGridItem, TypographyDate, TypographyTemp, SearchContainer, 
+         ForecastContainer, ForecastPaper, SearchPaper, OneDayGridContainer, FButton, FTypography, 
+         TypographyDay, TypographyMax, TypographyMin } from './Home.styles'
+import { Paper, Container, Grid } from '@material-ui/core'
 import AsyncSelect from 'react-select/async'
-import { Paper } from '@material-ui/core'
 
 
 class Home extends Component {
 
-    loadCitiesList = (inputValue, callback) => {
-        let tempArr = []
-        getAutoComplete(inputValue)
-            .then((data) => {
-                data.forEach(i => {
-                    tempArr.push({ label: i.LocalizedName, key: i.Key })
-                })
-                callback(tempArr)
-            })
-    }
-    onCitySelectHandler = (selectedCity) => {
-        if (selectedCity) {
-            this.props.selectCity(selectedCity)
+
+    componentDidUpdate(prevProps, prevState) {
+        let cityKey = this.props.cityKey
+        if (this.props.cityKey !== prevProps.cityKey) {
+            this.props.doLoadDailyForecast(cityKey)
+            this.props.doLoadFiveDayForecast(cityKey)
         }
     }
     addFavoritesHandler = () => {
-        this.props.addFavorites()
+        const { city, cityKey, doAddFavoritesHandler} = this.props
+        doAddFavoritesHandler(city, cityKey)
     }
 
     render() {
-        const state = this.props.data
-        const { oneDay, daily, city } = state
-        const { loadCitiesList, onCitySelectHandler, selectedCity } = this
-
+        const { oneDay, daily, city } = this.props
+        const { doLoadCitiesList, doGetSelectedCity, selectedCity } = this.props
         return (
             <React.Fragment>
                 <Container>
@@ -42,8 +38,8 @@ class Home extends Component {
                         <SearchPaper>
                             <AsyncSelect
                                 value={selectedCity}
-                                loadOptions={loadCitiesList}
-                                onChange={(e) => { onCitySelectHandler(e) }}
+                                loadOptions={doLoadCitiesList}
+                                onChange={doGetSelectedCity}
                             />
                         </SearchPaper>
                     </SearchContainer>
@@ -61,19 +57,19 @@ class Home extends Component {
                                         <TypographyDate>{oneDay.date}</TypographyDate>
                                         <TypographyTemp>{oneDay.temperature}{oneDay.unit}{'°'}</TypographyTemp>
                                         <FTypography component='div'>
-                                            <AvatarIcon src={"https://raw.githubusercontent.com/SejoB/Sergey-Bekker-04-09-2019/master/public/weatherIcons/" + oneDay.oneDayIcon + "-s.png"} alt='icon' />
+                                            <AvatarIcon src={"https://raw.githubusercontent.com/SejoB/Sergey-Bekker-04-09-2019/master/public/weatherIcons/" + oneDay.weatherIcon + "-s.png"} alt='icon' />
                                             {oneDay.text}
                                         </FTypography>
                                     </Grid>
                                 </OneDayPaper>
-                                    <Grid item>
-                                        <FButton onClick={this.addFavoritesHandler} >Add to Favorites</FButton>
-                                    </Grid>
+                                <Grid item>
+                                    <FButton onClick={this.addFavoritesHandler}>Add to Favorites</FButton>
+                                </Grid>
                             </OneDayGridContainer>
                             <FiveDayGridCont container>
                                 {daily.map((d, key) => {
                                     return <Paper key={key} style={{ padding: '0.5rem', margin: '0.5rem' }}>
-                                        <FiveDayGridItem  item>
+                                        <FiveDayGridItem item>
                                             <AvatarIcon src={"https://raw.githubusercontent.com/SejoB/Sergey-Bekker-04-09-2019/master/public/weatherIcons/" + d.fiveDayIcon + "-s.png"} alt='icon' />
                                             <TypographyDay>{d.date}</TypographyDay>
                                             <FiveDayGrid>
@@ -92,6 +88,32 @@ class Home extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    const {
+        cityKey,
+        city,
+        oneDay,
+        daily,
+        notification
+    } = state.home
+    return {
+        cityKey,
+        city,
+        oneDay,
+        daily,
+        notification
 
-export default Home
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        doLoadDailyForecast:    (cityKey)               => dispatch(loadDailyForecast(cityKey)),
+        doLoadFiveDayForecast:  (cityKey)               => dispatch(loadFiveDayForecast(cityKey)),
+        doLoadCitiesList:       (inputValue, callback)  => dispatch(loadCitiesList(inputValue, callback)),
+        doGetSelectedCity:      (selectedCity)          => dispatch(getSelectedCity(selectedCity)),
+        doAddFavoritesHandler:  (city, cityKey)         => dispatch(addToFavorites(city, cityKey))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
 
