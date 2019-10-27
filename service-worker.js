@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Sergey-Bekker-04-09-2019/precache-manifest.512bfd7c14a2b06dee295f46e3cb18f5.js"
+  "/Sergey-Bekker-04-09-2019/precache-manifest.ebc47ac9c1f6ea2d5e71a32e5cd2acac.js"
 );
 
 self.addEventListener('message', (event) => {
