@@ -1,0 +1,170 @@
+{
+    "Headline": {
+      "EffectiveDate": "2019-09-14T08:00:00+03:00",
+      "EffectiveEpochDate": 1568437200,
+      "Severity": 7,
+      "Text": "Mostly sunny this weekend",
+      "Category": "",
+      "EndDate": null,
+      "EndEpochDate": null,
+      "MobileLink": "http://m.accuweather.com/en/il/haifa/213181/extended-weather-forecast/213181?lang=en-us",
+      "Link": "http://www.accuweather.com/en/il/haifa/213181/daily-weather-forecast/213181?lang=en-us"
+    },
+    "DailyForecasts": [
+      {
+        "Date": "2019-09-09T07:00:00+03:00",
+        "EpochDate": 1568001600,
+        "Temperature": {
+          "Minimum": {
+            "Value": 75,
+            "Unit": "F",
+            "UnitType": 18
+          },
+          "Maximum": {
+            "Value": 87,
+            "Unit": "F",
+            "UnitType": 18
+          }
+        },
+        "Day": {
+          "Icon": 2,
+          "IconPhrase": "Mostly sunny",
+          "HasPrecipitation": false
+        },
+        "Night": {
+          "Icon": 35,
+          "IconPhrase": "Partly cloudy",
+          "HasPrecipitation": false
+        },
+        "Sources": [
+          "AccuWeather"
+        ],
+        "MobileLink": "http://m.accuweather.com/en/il/haifa/213181/daily-weather-forecast/213181?lang=en-us",
+        "Link": "http://www.accuweather.com/en/il/haifa/213181/daily-weather-forecast/213181?lang=en-us"
+      },
+      {
+        "Date": "2019-09-10T07:00:00+03:00",
+        "EpochDate": 1568088000,
+        "Temperature": {
+          "Minimum": {
+            "Value": 75,
+            "Unit": "F",
+            "UnitType": 18
+          },
+          "Maximum": {
+            "Value": 86,
+            "Unit": "F",
+            "UnitType": 18
+          }
+        },
+        "Day": {
+          "Icon": 2,
+          "IconPhrase": "Mostly sunny",
+          "HasPrecipitation": false
+        },
+        "Night": {
+          "Icon": 35,
+          "IconPhrase": "Partly cloudy",
+          "HasPrecipitation": false
+        },
+        "Sources": [
+          "AccuWeather"
+        ],
+        "MobileLink": "http://m.accuweather.com/en/il/haifa/213181/daily-weather-forecast/213181?day=1&lang=en-us",
+        "Link": "http://www.accuweather.com/en/il/haifa/213181/daily-weather-forecast/213181?day=1&lang=en-us"
+      },
+      {
+        "Date": "2019-09-11T07:00:00+03:00",
+        "EpochDate": 1568174400,
+        "Temperature": {
+          "Minimum": {
+            "Value": 74,
+            "Unit": "F",
+            "UnitType": 18
+          },
+          "Maximum": {
+            "Value": 85,
+            "Unit": "F",
+            "UnitType": 18
+          }
+        },
+        "Day": {
+          "Icon": 4,
+          "IconPhrase": "Intermittent clouds",
+          "HasPrecipitation": false
+        },
+        "Night": {
+          "Icon": 34,
+          "IconPhrase": "Mostly clear",
+          "HasPrecipitation": false
+        },
+        "Sources": [
+          "AccuWeather"
+        ],
+        "MobileLink": "http://m.accuweather.com/en/il/haifa/213181/daily-weather-forecast/213181?day=2&lang=en-us",
+        "Link": "http://www.accuweather.com/en/il/haifa/213181/daily-weather-forecast/213181?day=2&lang=en-us"
+      },
+      {
+        "Date": "2019-09-12T07:00:00+03:00",
+        "EpochDate": 1568260800,
+        "Temperature": {
+          "Minimum": {
+            "Value": 75,
+            "Unit": "F",
+            "UnitType": 18
+          },
+          "Maximum": {
+            "Value": 85,
+            "Unit": "F",
+            "UnitType": 18
+          }
+        },
+        "Day": {
+          "Icon": 3,
+          "IconPhrase": "Partly sunny",
+          "HasPrecipitation": false
+        },
+        "Night": {
+          "Icon": 35,
+          "IconPhrase": "Partly cloudy",
+          "HasPrecipitation": false
+        },
+        "Sources": [
+          "AccuWeather"
+        ],
+        "MobileLink": "http://m.accuweather.com/en/il/haifa/213181/daily-weather-forecast/213181?day=3&lang=en-us",
+        "Link": "http://www.accuweather.com/en/il/haifa/213181/daily-weather-forecast/213181?day=3&lang=en-us"
+      },
+      {
+        "Date": "2019-09-13T07:00:00+03:00",
+        "EpochDate": 1568347200,
+        "Temperature": {
+          "Minimum": {
+            "Value": 75,
+            "Unit": "F",
+            "UnitType": 18
+          },
+          "Maximum": {
+            "Value": 86,
+            "Unit": "F",
+            "UnitType": 18
+          }
+        },
+        "Day": {
+          "Icon": 2,
+          "IconPhrase": "Mostly sunny",
+          "HasPrecipitation": false
+        },
+        "Night": {
+          "Icon": 34,
+          "IconPhrase": "Mostly clear",
+          "HasPrecipitation": false
+        },
+        "Sources": [
+          "AccuWeather"
+        ],
+        "MobileLink": "http://m.accuweather.com/en/il/haifa/213181/daily-weather-forecast/213181?day=4&lang=en-us",
+        "Link": "http://www.accuweather.com/en/il/haifa/213181/daily-weather-forecast/213181?day=4&lang=en-us"
+      }
+    ]
+  }
