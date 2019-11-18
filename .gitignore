@@ -12,12 +12,10 @@
 /build
 production.env
 .env
-.env
 
 # misc
 development.env
 production.env
-.env 
 .DS_Store 
 .env.local
 .env.development.local
