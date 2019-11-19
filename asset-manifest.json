@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Sergey-Bekker-04-09-2019/static/css/main.498d002a.chunk.css",
-    "main.js": "/Sergey-Bekker-04-09-2019/static/js/main.b3e577e7.chunk.js",
-    "main.js.map": "/Sergey-Bekker-04-09-2019/static/js/main.b3e577e7.chunk.js.map",
-    "runtime-main.js": "/Sergey-Bekker-04-09-2019/static/js/runtime-main.01023606.js",
-    "runtime-main.js.map": "/Sergey-Bekker-04-09-2019/static/js/runtime-main.01023606.js.map",
-    "static/js/2.1d68b3c6.chunk.js": "/Sergey-Bekker-04-09-2019/static/js/2.1d68b3c6.chunk.js",
-    "static/js/2.1d68b3c6.chunk.js.map": "/Sergey-Bekker-04-09-2019/static/js/2.1d68b3c6.chunk.js.map",
-    "index.html": "/Sergey-Bekker-04-09-2019/index.html",
-    "precache-manifest.ebc47ac9c1f6ea2d5e71a32e5cd2acac.js": "/Sergey-Bekker-04-09-2019/precache-manifest.ebc47ac9c1f6ea2d5e71a32e5cd2acac.js",
-    "service-worker.js": "/Sergey-Bekker-04-09-2019/service-worker.js",
-    "static/css/main.498d002a.chunk.css.map": "/Sergey-Bekker-04-09-2019/static/css/main.498d002a.chunk.css.map"
+    "main.css": "/weather-forecast-app/static/css/main.498d002a.chunk.css",
+    "main.js": "/weather-forecast-app/static/js/main.0c50befa.chunk.js",
+    "main.js.map": "/weather-forecast-app/static/js/main.0c50befa.chunk.js.map",
+    "runtime-main.js": "/weather-forecast-app/static/js/runtime-main.1289af72.js",
+    "runtime-main.js.map": "/weather-forecast-app/static/js/runtime-main.1289af72.js.map",
+    "static/js/2.1d68b3c6.chunk.js": "/weather-forecast-app/static/js/2.1d68b3c6.chunk.js",
+    "static/js/2.1d68b3c6.chunk.js.map": "/weather-forecast-app/static/js/2.1d68b3c6.chunk.js.map",
+    "index.html": "/weather-forecast-app/index.html",
+    "precache-manifest.1b8fa6a717aee3e1551763f87bdd2fc4.js": "/weather-forecast-app/precache-manifest.1b8fa6a717aee3e1551763f87bdd2fc4.js",
+    "service-worker.js": "/weather-forecast-app/service-worker.js",
+    "static/css/main.498d002a.chunk.css.map": "/weather-forecast-app/static/css/main.498d002a.chunk.css.map"
   }
 }
