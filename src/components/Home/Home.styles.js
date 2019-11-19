@@ -8,14 +8,12 @@ import Typography from '@material-ui/core/Typography'
 import Avatar from '@material-ui/core/Avatar'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 
-
 export const SearchContainer = withStyles({
     root: {
         display: 'flex',
         marginTop: '1.25rem',
         justifyContent: 'center',
         marginBottom: '1.25rem',
-        // minWidth: '22rem',
     }
 })(Container)
 export const SearchPaper = withStyles({
@@ -43,7 +41,7 @@ export const OneDayGridContainer = withStyles({
     root: {
         justifyContent: 'space-between',
         [theme.breakpoints.up('xs')]: {
-            width:'100%'
+            width: '100%'
         }
     }
 })(Grid)
@@ -56,16 +54,10 @@ export const OneDayPaper = withStyles({
         padding: '0.5rem 1rem',
         minWidth: '16.875rem',
         [theme.breakpoints.down('xs')]: {
-            width:'100%'
+            width: '100%'
         }
     }
 })(Paper)
-export const FavoriteHiddenBtn = withStyles({
-    root: {
-        color: 'grey',
-        borderRadius: '25px'
-    }
-})(Button)
 export const TypographyCity = withStyles({
     root: {
         fontSize: '1.5rem',
@@ -97,7 +89,7 @@ export const AvatarIcon = withStyles({
         alignSelf: 'center'
     }
 })(Avatar)
-export const FButton =  withStyles({
+export const FButton = withStyles({
     root: {
         height: '2.2rem',
         marginTop: '1.25rem',
@@ -106,18 +98,20 @@ export const FButton =  withStyles({
         boxShadow: '0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12)',
         [theme.breakpoints.down('xs')]: {
             display: 'none'
-          }
+        }
     }
 })(Button)
 export const FIcon = withStyles({
     root: {
         display: 'none',
         [theme.breakpoints.down('xs')]: {
-            display: 'inline-block'
+            display: 'inline-block',
+            color: 'grey',
+            fontSize: '2rem'
+
         }
     }
 })(FavoriteIcon)
-
 export const FTypography = withStyles({
     root: {
         fontSize: '1.5rem',

@@ -8,10 +8,6 @@ const autoCompleteUrl            = (query)      => `${API_HOST}/locations/${API_
 const autoCompleteUrlDaily       = (key)        => `${API_HOST}/currentconditions/${API_VERSION}/${key}?apikey=${API_KEY}`
 const autoCompleteUrlFiveDay     = (key)        => `${API_HOST}/forecasts/${API_VERSION}/daily/5day/${key}?apikey=${API_KEY}`
 const autoCompleteUrlGeoPosition = (lat, lon)   => `${API_HOST}/locations/${API_VERSION}/cities/geoposition/search?apikey=${API_KEY}&q=${lat}%20%2C%20${lon}%20&toplevel=false`
-// const autoCompleteUrl       =  () => 'https://raw.githubusercontent.com/SejoB/Sergey-Bekker-04-09-2019/master/public/autoComplete.json'
-// const autoCompleteUrlDaily   =  () => 'https://raw.githubusercontent.com/SejoB/Sergey-Bekker-04-09-2019/master/public/currentWeather.json'
-// const autoCompleteUrlFiveDay =  () => 'https://raw.githubusercontent.com/SejoB/Sergey-Bekker-04-09-2019/master/public/5dayWeather.json'
-// const autoCompleteUrlGeoPosition = () => 'https://raw.githubusercontent.com/SejoB/Sergey-Bekker-04-09-2019/master/public/5dayWeather.json'
 
 export const getAutoComplete = async (query) => {
     try {

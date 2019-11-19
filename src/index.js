@@ -12,8 +12,7 @@ import App from './components/App'
 import theme from '../src/theme'
 import configureStore from './configureStore'
 
-import {getPosition} from '../src/components/Home/Home.actions'
-
+import { getPosition } from '../src/components/Home/Home.actions'
 
 const store = configureStore()
 

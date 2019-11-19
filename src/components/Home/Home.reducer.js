@@ -14,22 +14,21 @@ import {
     GET_SELECTED_CITY
 } from './Home.actions'
 
-import {LOAD_CITY_FROM_FAVORITES} from '../Favorites/Favorites.actions'
+import { LOAD_CITY_FROM_FAVORITES } from '../Favorites/Favorites.actions'
 
 let initialState = {
-    cityKey: '',
+    cityKey: 0,
     city: '',
     daily: [],
     notification: '',
     oneDay: {
         date: '',
-        temperature: null,
+        temperature: 0,
         text: '',
         unit: '',
-        weatherIcon: null
+        weatherIcon: 0
     }
 }
-
 
 export const homeReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -43,7 +42,7 @@ export const homeReducer = (state = initialState, action) => {
                 ...state,
                 cityKey: action.payload.Key,
                 city: action.payload.LocalizedName,
-                notification: null
+                notification: ''
             }
         case LOCATION_ERROR:
             return {
@@ -65,13 +64,13 @@ export const homeReducer = (state = initialState, action) => {
             return {
                 ...state,
                 oneDay: {
-                    date: `${weekday[date.getDay()]} ${date.getHours()}:${date.getMinutes()}`,
+                    date: `${weekday[date.getDay()]} ${date.getHours()}:${(date.getMinutes() < 10 ? '0' : '') + date.getMinutes()}`,
                     temperature: temperature,
                     text: text,
                     unit: unit,
                     weatherIcon: oneDayIcon
                 },
-                notification: null
+                notification: ''
             }
         case DAILY_FORECAST_ERROR:
             return {
@@ -101,7 +100,7 @@ export const homeReducer = (state = initialState, action) => {
             return {
                 ...state,
                 daily: arr,
-                notification: null
+                notification: ''
             }
         case FIVE_DAY_FORECAST_ERROR:
             return {
@@ -124,17 +123,17 @@ export const homeReducer = (state = initialState, action) => {
                 notification: action.payload
             }
         case GET_SELECTED_CITY:
-                const city = action.payload.label
-                const key  = action.payload.key
+            const city = action.payload.label
+            const key = action.payload.key
             return {
                 ...state,
-                city:    city,
+                city: city,
                 cityKey: key
             }
         case LOAD_CITY_FROM_FAVORITES:
             return {
                 ...state,
-                city:    action.payload[0],
+                city: action.payload[0],
                 cityKey: action.payload[1]
             }
         default:

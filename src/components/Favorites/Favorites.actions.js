@@ -12,8 +12,7 @@ export const addToFavorites = (city, cityKey) => {
 }
 export const loadFavoritesList = () => {
     return dispatch => {
-        const fav = { ...localStorage }
-        const items = Object.entries(fav)
+        const items = Object.entries({ ...localStorage })
         dispatch({
             type: LOAD_FAVORITE_LIST,
             payload: items
@@ -22,15 +21,13 @@ export const loadFavoritesList = () => {
 }
 export const deleteFavoritesCity = (value) => {
     return dispatch => {
-       
-            localStorage.removeItem(value)
-            const fav = { ...localStorage }
-            const items = Object.entries(fav)
-            dispatch({
-                type: DELETE_FROM_FAVORITE,
-                payload: items
-            })
-        }
+        localStorage.removeItem(value)
+        const items = Object.entries({ ...localStorage })
+        dispatch({
+            type: DELETE_FROM_FAVORITE,
+            payload: items
+        })
+    }
 }
 export const loadFavoritesCity = (value) => {
     return dispatch => {

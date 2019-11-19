@@ -17,15 +17,15 @@ export const favoritesReducer = (state = initialState, action) => {
                 notification: 'city is added'
             }
         case LOAD_FAVORITE_LIST:
-            console.log(action.payload)
             return {
-                ...state, 
+                ...state,
                 favorites: action.payload
             }
         case DELETE_FROM_FAVORITE:
             return {
                 ...state,
-                favorites: action.payload
+                favorites: action.payload,
+                notification: 'city is deleted'
             }
         default:
             return state

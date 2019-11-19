@@ -1,6 +1,5 @@
 import { getDailyForecast, getFiveDayForecast, getGeoPosition, getAutoComplete } from '../../API/API'
 
-
 export const FETCHING_LOCATION = 'FETCHING_LOCATION'
 export const FETCHED_LOCATION = 'FETCHED_LOCATION'
 export const LOCATION_ERROR = 'LOCATION_ERROR'
@@ -18,11 +17,6 @@ export const CITIES_LIST_LOADED = 'CITIES_LIST_LOADED'
 export const CITIES_LIST_ERROR = 'CITIES_LIST_ERROR'
 
 export const GET_SELECTED_CITY = 'GET_SELECTED_CITY'
-
-
-
-
-
 
 export const getPosition = () => {
     return (dispatch) => {
@@ -59,7 +53,6 @@ export const getPosition = () => {
     }
 }
 export const loadDailyForecast = (cityKey) => {
-
     return dispatch => {
 
         dispatch({ type: LOADING_DAILY_FORECAST })
@@ -80,7 +73,6 @@ export const loadDailyForecast = (cityKey) => {
     }
 }
 export const loadFiveDayForecast = (cityKey) => {
-
     return dispatch => {
 
         dispatch({ type: LOADING_FIVE_DAY_FORECAST })
@@ -101,8 +93,8 @@ export const loadFiveDayForecast = (cityKey) => {
     }
 }
 export const loadCitiesList = (inputValue, callback) => {
-
     return dispatch => {
+
         dispatch({ type: LOADING_CITIES_LIST })
 
         let tempArr = []

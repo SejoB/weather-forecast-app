@@ -5,7 +5,7 @@ import { loadDailyForecast, loadFiveDayForecast, loadCitiesList, getSelectedCity
 import { addToFavorites } from '../Favorites/Favorites.actions'
 
 
-import { FIcon, AvatarIcon, FavoriteHiddenBtn, OneDayPaper, TypographyCity, FiveDayGrid, 
+import { FIcon, AvatarIcon, OneDayPaper, TypographyCity, FiveDayGrid, 
          FiveDayGridCont, FiveDayGridItem, TypographyDate, TypographyTemp, SearchContainer, 
          ForecastContainer, ForecastPaper, SearchPaper, OneDayGridContainer, FButton, FTypography, 
          TypographyDay, TypographyMax, TypographyMin } from './Home.styles'
@@ -14,7 +14,6 @@ import AsyncSelect from 'react-select/async'
 
 
 class Home extends Component {
-
 
     componentDidUpdate(prevProps, prevState) {
         let cityKey = this.props.cityKey
@@ -49,9 +48,7 @@ class Home extends Component {
                                 <OneDayPaper>
                                     <Grid item style={{ justifyContent: 'space-between', flexWrap: 'nowrap', display: 'flex' }}>
                                         <TypographyCity>{city}</TypographyCity>
-                                        <FavoriteHiddenBtn>
-                                            <FIcon onClick={this.addFavoritesHandler}></FIcon>
-                                        </FavoriteHiddenBtn>
+                                        <FIcon onClick={this.addFavoritesHandler}></FIcon>
                                     </Grid>
                                     <Grid item>
                                         <TypographyDate>{oneDay.date}</TypographyDate>
@@ -114,6 +111,5 @@ const mapDispatchToProps = dispatch => {
         doAddFavoritesHandler:  (city, cityKey)         => dispatch(addToFavorites(city, cityKey))
     }
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
 
