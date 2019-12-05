@@ -1,170 +1,188 @@
 {
-    "Headline": {
-      "EffectiveDate": "2019-09-14T08:00:00+03:00",
-      "EffectiveEpochDate": 1568437200,
-      "Severity": 7,
-      "Text": "Mostly sunny this weekend",
-      "Category": "",
-      "EndDate": null,
-      "EndEpochDate": null,
-      "MobileLink": "http://m.accuweather.com/en/il/haifa/213181/extended-weather-forecast/213181?lang=en-us",
-      "Link": "http://www.accuweather.com/en/il/haifa/213181/daily-weather-forecast/213181?lang=en-us"
+  "Headline": {
+    "EffectiveDate": "2019-12-08T01:00:00+01:00",
+    "EffectiveEpochDate": 1575763200,
+    "Severity": 5,
+    "Text": "Thunderstorms late Saturday night",
+    "Category": "thunderstorm",
+    "EndDate": "2019-12-08T07:00:00+01:00",
+    "EndEpochDate": 1575784800,
+    "MobileLink": "http://m.accuweather.com/en/cd/kinshasa/113487/extended-weather-forecast/113487?unit=c&lang=en-us",
+    "Link": "http://www.accuweather.com/en/cd/kinshasa/113487/daily-weather-forecast/113487?unit=c&lang=en-us"
+  },
+  "DailyForecasts": [
+    {
+      "Date": "2019-12-05T07:00:00+01:00",
+      "EpochDate": 1575525600,
+      "Temperature": {
+        "Minimum": {
+          "Value": 22.4,
+          "Unit": "C",
+          "UnitType": 17
+        },
+        "Maximum": {
+          "Value": 29.3,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "Day": {
+        "Icon": 15,
+        "IconPhrase": "Thunderstorms",
+        "HasPrecipitation": true,
+        "PrecipitationType": "Rain",
+        "PrecipitationIntensity": "Light"
+      },
+      "Night": {
+        "Icon": 15,
+        "IconPhrase": "Thunderstorms",
+        "HasPrecipitation": true,
+        "PrecipitationType": "Rain",
+        "PrecipitationIntensity": "Light"
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://m.accuweather.com/en/cd/kinshasa/113487/daily-weather-forecast/113487?day=1&unit=c&lang=en-us",
+      "Link": "http://www.accuweather.com/en/cd/kinshasa/113487/daily-weather-forecast/113487?day=1&unit=c&lang=en-us"
     },
-    "DailyForecasts": [
-      {
-        "Date": "2019-09-09T07:00:00+03:00",
-        "EpochDate": 1568001600,
-        "Temperature": {
-          "Minimum": {
-            "Value": 75,
-            "Unit": "F",
-            "UnitType": 18
-          },
-          "Maximum": {
-            "Value": 87,
-            "Unit": "F",
-            "UnitType": 18
-          }
+    {
+      "Date": "2019-12-06T07:00:00+01:00",
+      "EpochDate": 1575612000,
+      "Temperature": {
+        "Minimum": {
+          "Value": 22.5,
+          "Unit": "C",
+          "UnitType": 17
         },
-        "Day": {
-          "Icon": 2,
-          "IconPhrase": "Mostly sunny",
-          "HasPrecipitation": false
-        },
-        "Night": {
-          "Icon": 35,
-          "IconPhrase": "Partly cloudy",
-          "HasPrecipitation": false
-        },
-        "Sources": [
-          "AccuWeather"
-        ],
-        "MobileLink": "http://m.accuweather.com/en/il/haifa/213181/daily-weather-forecast/213181?lang=en-us",
-        "Link": "http://www.accuweather.com/en/il/haifa/213181/daily-weather-forecast/213181?lang=en-us"
+        "Maximum": {
+          "Value": 29.1,
+          "Unit": "C",
+          "UnitType": 17
+        }
       },
-      {
-        "Date": "2019-09-10T07:00:00+03:00",
-        "EpochDate": 1568088000,
-        "Temperature": {
-          "Minimum": {
-            "Value": 75,
-            "Unit": "F",
-            "UnitType": 18
-          },
-          "Maximum": {
-            "Value": 86,
-            "Unit": "F",
-            "UnitType": 18
-          }
-        },
-        "Day": {
-          "Icon": 2,
-          "IconPhrase": "Mostly sunny",
-          "HasPrecipitation": false
-        },
-        "Night": {
-          "Icon": 35,
-          "IconPhrase": "Partly cloudy",
-          "HasPrecipitation": false
-        },
-        "Sources": [
-          "AccuWeather"
-        ],
-        "MobileLink": "http://m.accuweather.com/en/il/haifa/213181/daily-weather-forecast/213181?day=1&lang=en-us",
-        "Link": "http://www.accuweather.com/en/il/haifa/213181/daily-weather-forecast/213181?day=1&lang=en-us"
+      "Day": {
+        "Icon": 15,
+        "IconPhrase": "Thunderstorms",
+        "HasPrecipitation": true,
+        "PrecipitationType": "Rain",
+        "PrecipitationIntensity": "Light"
       },
-      {
-        "Date": "2019-09-11T07:00:00+03:00",
-        "EpochDate": 1568174400,
-        "Temperature": {
-          "Minimum": {
-            "Value": 74,
-            "Unit": "F",
-            "UnitType": 18
-          },
-          "Maximum": {
-            "Value": 85,
-            "Unit": "F",
-            "UnitType": 18
-          }
-        },
-        "Day": {
-          "Icon": 4,
-          "IconPhrase": "Intermittent clouds",
-          "HasPrecipitation": false
-        },
-        "Night": {
-          "Icon": 34,
-          "IconPhrase": "Mostly clear",
-          "HasPrecipitation": false
-        },
-        "Sources": [
-          "AccuWeather"
-        ],
-        "MobileLink": "http://m.accuweather.com/en/il/haifa/213181/daily-weather-forecast/213181?day=2&lang=en-us",
-        "Link": "http://www.accuweather.com/en/il/haifa/213181/daily-weather-forecast/213181?day=2&lang=en-us"
+      "Night": {
+        "Icon": 15,
+        "IconPhrase": "Thunderstorms",
+        "HasPrecipitation": true,
+        "PrecipitationType": "Rain",
+        "PrecipitationIntensity": "Light"
       },
-      {
-        "Date": "2019-09-12T07:00:00+03:00",
-        "EpochDate": 1568260800,
-        "Temperature": {
-          "Minimum": {
-            "Value": 75,
-            "Unit": "F",
-            "UnitType": 18
-          },
-          "Maximum": {
-            "Value": 85,
-            "Unit": "F",
-            "UnitType": 18
-          }
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://m.accuweather.com/en/cd/kinshasa/113487/daily-weather-forecast/113487?day=2&unit=c&lang=en-us",
+      "Link": "http://www.accuweather.com/en/cd/kinshasa/113487/daily-weather-forecast/113487?day=2&unit=c&lang=en-us"
+    },
+    {
+      "Date": "2019-12-07T07:00:00+01:00",
+      "EpochDate": 1575698400,
+      "Temperature": {
+        "Minimum": {
+          "Value": 21.5,
+          "Unit": "C",
+          "UnitType": 17
         },
-        "Day": {
-          "Icon": 3,
-          "IconPhrase": "Partly sunny",
-          "HasPrecipitation": false
-        },
-        "Night": {
-          "Icon": 35,
-          "IconPhrase": "Partly cloudy",
-          "HasPrecipitation": false
-        },
-        "Sources": [
-          "AccuWeather"
-        ],
-        "MobileLink": "http://m.accuweather.com/en/il/haifa/213181/daily-weather-forecast/213181?day=3&lang=en-us",
-        "Link": "http://www.accuweather.com/en/il/haifa/213181/daily-weather-forecast/213181?day=3&lang=en-us"
+        "Maximum": {
+          "Value": 30.1,
+          "Unit": "C",
+          "UnitType": 17
+        }
       },
-      {
-        "Date": "2019-09-13T07:00:00+03:00",
-        "EpochDate": 1568347200,
-        "Temperature": {
-          "Minimum": {
-            "Value": 75,
-            "Unit": "F",
-            "UnitType": 18
-          },
-          "Maximum": {
-            "Value": 86,
-            "Unit": "F",
-            "UnitType": 18
-          }
+      "Day": {
+        "Icon": 6,
+        "IconPhrase": "Mostly cloudy",
+        "HasPrecipitation": true,
+        "PrecipitationType": "Rain",
+        "PrecipitationIntensity": "Light"
+      },
+      "Night": {
+        "Icon": 15,
+        "IconPhrase": "Thunderstorms",
+        "HasPrecipitation": true,
+        "PrecipitationType": "Rain",
+        "PrecipitationIntensity": "Moderate"
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://m.accuweather.com/en/cd/kinshasa/113487/daily-weather-forecast/113487?day=3&unit=c&lang=en-us",
+      "Link": "http://www.accuweather.com/en/cd/kinshasa/113487/daily-weather-forecast/113487?day=3&unit=c&lang=en-us"
+    },
+    {
+      "Date": "2019-12-08T07:00:00+01:00",
+      "EpochDate": 1575784800,
+      "Temperature": {
+        "Minimum": {
+          "Value": 23,
+          "Unit": "C",
+          "UnitType": 17
         },
-        "Day": {
-          "Icon": 2,
-          "IconPhrase": "Mostly sunny",
-          "HasPrecipitation": false
+        "Maximum": {
+          "Value": 30.9,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "Day": {
+        "Icon": 7,
+        "IconPhrase": "Cloudy",
+        "HasPrecipitation": true,
+        "PrecipitationType": "Rain",
+        "PrecipitationIntensity": "Light"
+      },
+      "Night": {
+        "Icon": 7,
+        "IconPhrase": "Cloudy",
+        "HasPrecipitation": true,
+        "PrecipitationType": "Rain",
+        "PrecipitationIntensity": "Light"
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://m.accuweather.com/en/cd/kinshasa/113487/daily-weather-forecast/113487?day=4&unit=c&lang=en-us",
+      "Link": "http://www.accuweather.com/en/cd/kinshasa/113487/daily-weather-forecast/113487?day=4&unit=c&lang=en-us"
+    },
+    {
+      "Date": "2019-12-09T07:00:00+01:00",
+      "EpochDate": 1575871200,
+      "Temperature": {
+        "Minimum": {
+          "Value": 22.5,
+          "Unit": "C",
+          "UnitType": 17
         },
-        "Night": {
-          "Icon": 34,
-          "IconPhrase": "Mostly clear",
-          "HasPrecipitation": false
-        },
-        "Sources": [
-          "AccuWeather"
-        ],
-        "MobileLink": "http://m.accuweather.com/en/il/haifa/213181/daily-weather-forecast/213181?day=4&lang=en-us",
-        "Link": "http://www.accuweather.com/en/il/haifa/213181/daily-weather-forecast/213181?day=4&lang=en-us"
-      }
-    ]
-  }
+        "Maximum": {
+          "Value": 29.7,
+          "Unit": "C",
+          "UnitType": 17
+        }
+      },
+      "Day": {
+        "Icon": 6,
+        "IconPhrase": "Mostly cloudy",
+        "HasPrecipitation": true,
+        "PrecipitationType": "Rain",
+        "PrecipitationIntensity": "Light"
+      },
+      "Night": {
+        "Icon": 38,
+        "IconPhrase": "Mostly cloudy",
+        "HasPrecipitation": false
+      },
+      "Sources": [
+        "AccuWeather"
+      ],
+      "MobileLink": "http://m.accuweather.com/en/cd/kinshasa/113487/daily-weather-forecast/113487?day=5&unit=c&lang=en-us",
+      "Link": "http://www.accuweather.com/en/cd/kinshasa/113487/daily-weather-forecast/113487?day=5&unit=c&lang=en-us"
+    }
+  ]
+}
