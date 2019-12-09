@@ -1,5 +1,5 @@
 import { withStyles } from '@material-ui/core/styles'
-import theme from './../../theme'
+import theme from './../../theme/theme'
 import Container from '@material-ui/core/Container'
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Avatar from '@material-ui/core/Avatar'
 import FavoriteIcon from '@material-ui/icons/Favorite'
+import ToggleButton from '@material-ui/lab/ToggleButton'
 
 export const SearchContainer = withStyles({
     root: {
@@ -58,6 +59,12 @@ export const OneDayPaper = withStyles({
         }
     }
 })(Paper)
+export const FavoriteHiddenBtn = withStyles({
+    root: {
+        color: 'grey',
+        borderRadius: '25px'
+    }
+})(Button)
 export const TypographyCity = withStyles({
     root: {
         fontSize: '1.5rem',
@@ -78,12 +85,18 @@ export const TypographyDate = withStyles({
 })(Typography)
 export const TypographyTemp = withStyles({
     root: {
-        display: 'flex',
+        display: 'inline-flex',
         fontSize: '4rem',
-        margin: '0 0.3125rem 0 0',
-        justifyContent: 'flex-end',
+        alignItems: 'center'
     }
 })(Typography)
+export const ToggleFahrCel = withStyles({
+    root: {
+        fontSize: '1.3rem',
+        fontWeight: 300,
+        color: 'black'
+    }
+})(ToggleButton)
 export const AvatarIcon = withStyles({
     root: {
         alignSelf: 'center'
@@ -105,10 +118,7 @@ export const FIcon = withStyles({
     root: {
         display: 'none',
         [theme.breakpoints.down('xs')]: {
-            display: 'inline-block',
-            color: 'grey',
-            fontSize: '2rem'
-
+            display: 'inline-block'
         }
     }
 })(FavoriteIcon)
@@ -126,7 +136,6 @@ export const FiveDayGridCont = withStyles({
         display: 'flex',
         marginTop: '3rem',
         [theme.breakpoints.down('xs')]: {
-            display: 'flex',
             flexDirection: 'column',
             overflow: 'scroll',
             height: '14.6875rem',

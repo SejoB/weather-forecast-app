@@ -4,7 +4,6 @@ import { loadFavoritesList, deleteFavoritesCity, loadFavoritesCity } from './Fav
 import Grid from '@material-ui/core/Grid'
 import { FContainer, ItemCard, FTypography, FPaper, FGrid, FDIcon } from './Favorites.styles'
 
-
 class Favorites extends Component {
 
     componentDidMount() {
@@ -48,7 +47,6 @@ const mapStateToProps = state => {
     } = state.favorite
     return {
         favorites
-
     }
 }
 const mapDispatchToProps = dispatch => {

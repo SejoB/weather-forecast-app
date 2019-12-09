@@ -3,33 +3,86 @@ import { connect } from 'react-redux'
 
 import { loadDailyForecast, loadFiveDayForecast, loadCitiesList, getSelectedCity } from './Home.actions'
 import { addToFavorites } from '../Favorites/Favorites.actions'
+import { convertCelsToFahr, convertFahrToCels } from '../Home/celciumConverter.actions'
 
-
-import { FIcon, AvatarIcon, OneDayPaper, TypographyCity, FiveDayGrid, 
-         FiveDayGridCont, FiveDayGridItem, TypographyDate, TypographyTemp, SearchContainer, 
-         ForecastContainer, ForecastPaper, SearchPaper, OneDayGridContainer, FButton, FTypography, 
-         TypographyDay, TypographyMax, TypographyMin } from './Home.styles'
+import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup'
 import { Paper, Container, Grid } from '@material-ui/core'
 import AsyncSelect from 'react-select/async'
-
+import {
+    FIcon, AvatarIcon, FavoriteHiddenBtn, OneDayPaper, TypographyCity, FiveDayGrid,
+    FiveDayGridCont, FiveDayGridItem, TypographyDate, TypographyTemp, SearchContainer,
+    ForecastContainer, ForecastPaper, SearchPaper, OneDayGridContainer, FButton, FTypography,
+    TypographyDay, TypographyMax, TypographyMin, ToggleFahrCel
+} from './Home.styles'
 
 class Home extends Component {
-
+    state = {
+        favColor: false,
+        measure: 'celsium',
+    }
+    componentDidMount() {
+        const { city, cityKey, doLoadDailyForecast, doLoadFiveDayForecast } = this.props
+        if (cityKey) {
+            doLoadDailyForecast(cityKey)
+            doLoadFiveDayForecast(cityKey)
+        }
+        if (city) {
+            this.checkCityInFav(city)
+        }
+    }
     componentDidUpdate(prevProps, prevState) {
-        let cityKey = this.props.cityKey
+        const { city, cityKey, doLoadDailyForecast, doLoadFiveDayForecast } = this.props
         if (this.props.cityKey !== prevProps.cityKey) {
-            this.props.doLoadDailyForecast(cityKey)
-            this.props.doLoadFiveDayForecast(cityKey)
+            doLoadDailyForecast(cityKey)
+            doLoadFiveDayForecast(cityKey)
+        }
+        if (this.props.city !== prevProps.city) {
+            this.checkCityInFav(city)
         }
     }
     addFavoritesHandler = () => {
-        const { city, cityKey, doAddFavoritesHandler} = this.props
+        const { city, cityKey, doAddFavoritesHandler } = this.props
         doAddFavoritesHandler(city, cityKey)
+        this.setState({
+            favColor: true
+        })
     }
-
+    checkCityInFav = (city) => {
+        let fav = { ...localStorage }
+        for (let item in fav) {
+            if (item === city) {
+                return this.setState({
+                    favColor: true
+                })
+            } else {
+                this.setState({
+                    favColor: false
+                })
+            }
+        }
+    }
+    changeMeasurementHandler = (event, newMeasure) => {
+        const obj = this.props.daily
+        switch (newMeasure) {
+            case 'fahrenheit':
+                this.props.doConvertCelsToFahr(obj)
+                return this.setState({
+                    measure: 'fahrenheit',
+                })
+            case 'celsium':
+                this.props.doConvertFahrToCels(obj)
+                return this.setState({
+                    measure: 'celsium',
+                })
+            default:
+                return this.state
+        }
+    }
     render() {
         const { oneDay, daily, city } = this.props
         const { doLoadCitiesList, doGetSelectedCity, selectedCity } = this.props
+        const { favColor, measure } = this.state
+        const favoritesBtn = { color: (favColor ? 'red' : '') }
         return (
             <React.Fragment>
                 <Container>
@@ -48,19 +101,31 @@ class Home extends Component {
                                 <OneDayPaper>
                                     <Grid item style={{ justifyContent: 'space-between', flexWrap: 'nowrap', display: 'flex' }}>
                                         <TypographyCity>{city}</TypographyCity>
-                                        <FIcon onClick={this.addFavoritesHandler}></FIcon>
+                                        <FavoriteHiddenBtn>
+                                            <FIcon style={favoritesBtn} onClick={this.addFavoritesHandler}></FIcon>
+                                        </FavoriteHiddenBtn>
                                     </Grid>
-                                    <Grid item>
-                                        <TypographyDate>{oneDay.date}</TypographyDate>
-                                        <TypographyTemp>{oneDay.temperature}{oneDay.unit}{'°'}</TypographyTemp>
-                                        <FTypography component='div'>
-                                            <AvatarIcon src={"https://raw.githubusercontent.com/SejoB/Sergey-Bekker-04-09-2019/master/public/weatherIcons/" + oneDay.weatherIcon + "-s.png"} alt='icon' />
-                                            {oneDay.text}
-                                        </FTypography>
+                                    <TypographyDate>{oneDay.date}</TypographyDate>
+                                    <Grid container style={{ justifyContent: 'flex-end' }}>
+                                        <TypographyTemp>
+                                            {measure === 'celsium' ? oneDay.metricTemp : oneDay.imperialTemp}
+                                        </TypographyTemp>
+                                        <ToggleButtonGroup exclusive
+                                            onChange={this.changeMeasurementHandler}
+                                            value={measure}
+                                            size='medium'
+                                            style={{ alignSelf: 'center' }}>
+                                            <ToggleFahrCel value='celsium'>{'C°'}</ToggleFahrCel>
+                                            <ToggleFahrCel value='fahrenheit'>{'F°'}</ToggleFahrCel>
+                                        </ToggleButtonGroup>
                                     </Grid>
+                                    <FTypography component='div'>
+                                        <AvatarIcon src={"https://raw.githubusercontent.com/SejoB/Sergey-Bekker-04-09-2019/master/public/weatherIcons/" + oneDay.weatherIcon + "-s.png"} alt='icon' />
+                                        {oneDay.text}
+                                    </FTypography>
                                 </OneDayPaper>
                                 <Grid item>
-                                    <FButton onClick={this.addFavoritesHandler}>Add to Favorites</FButton>
+                                    <FButton style={favoritesBtn} onClick={this.addFavoritesHandler}>Add to Favorites</FButton>
                                 </Grid>
                             </OneDayGridContainer>
                             <FiveDayGridCont container>
@@ -84,31 +149,31 @@ class Home extends Component {
         )
     }
 }
-
 const mapStateToProps = state => {
     const {
         cityKey,
         city,
         oneDay,
         daily,
-        notification
+        notification,
     } = state.home
     return {
         cityKey,
         city,
         oneDay,
         daily,
-        notification
-
+        notification,
     }
 }
 const mapDispatchToProps = dispatch => {
     return {
-        doLoadDailyForecast:    (cityKey)               => dispatch(loadDailyForecast(cityKey)),
-        doLoadFiveDayForecast:  (cityKey)               => dispatch(loadFiveDayForecast(cityKey)),
-        doLoadCitiesList:       (inputValue, callback)  => dispatch(loadCitiesList(inputValue, callback)),
-        doGetSelectedCity:      (selectedCity)          => dispatch(getSelectedCity(selectedCity)),
-        doAddFavoritesHandler:  (city, cityKey)         => dispatch(addToFavorites(city, cityKey))
+        doLoadDailyForecast: (cityKey) => dispatch(loadDailyForecast(cityKey)),
+        doLoadFiveDayForecast: (cityKey) => dispatch(loadFiveDayForecast(cityKey)),
+        doLoadCitiesList: (inputValue, callback) => dispatch(loadCitiesList(inputValue, callback)),
+        doGetSelectedCity: (selectedCity) => dispatch(getSelectedCity(selectedCity)),
+        doAddFavoritesHandler: (city, cityKey) => dispatch(addToFavorites(city, cityKey)),
+        doConvertCelsToFahr: (obj) => dispatch(convertCelsToFahr(obj)),
+        doConvertFahrToCels: (obj) => dispatch(convertFahrToCels(obj))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

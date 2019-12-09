@@ -15,18 +15,19 @@ import {
 } from './Home.actions'
 
 import { LOAD_CITY_FROM_FAVORITES } from '../Favorites/Favorites.actions'
+import { CONVERT_TO_FAHRENHEIT, CONVERT_TO_CELSIUM } from '../Home/celciumConverter.actions'
 
 let initialState = {
-    cityKey: 0,
+    cityKey: '',
     city: '',
     daily: [],
     notification: '',
     oneDay: {
         date: '',
-        temperature: 0,
+        metricTemp: null,
+        imperialTemp: null,
         text: '',
-        unit: '',
-        weatherIcon: 0
+        weatherIcon: null
     }
 }
 
@@ -42,7 +43,7 @@ export const homeReducer = (state = initialState, action) => {
                 ...state,
                 cityKey: action.payload.Key,
                 city: action.payload.LocalizedName,
-                notification: ''
+                notification: null
             }
         case LOCATION_ERROR:
             return {
@@ -57,20 +58,20 @@ export const homeReducer = (state = initialState, action) => {
         case DAILY_FORECAST_LOADED:
             const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
             const date = new Date(action.payload[0].LocalObservationDateTime)
-            const temperature = (action.payload[0].Temperature.Imperial.Value)
-            const unit = (action.payload[0].Temperature.Imperial.Unit)
+            const metricTemp = Math.round(action.payload[0].Temperature.Metric.Value)
+            const imperialTemp = (action.payload[0].Temperature.Imperial.Value)
             const text = (action.payload[0].WeatherText)
             const oneDayIcon = (action.payload[0].WeatherIcon)
             return {
                 ...state,
                 oneDay: {
-                    date: `${weekday[date.getDay()]} ${date.getHours()}:${(date.getMinutes() < 10 ? '0' : '') + date.getMinutes()}`,
-                    temperature: temperature,
+                    date: `${weekday[date.getDay()]} ${date.getHours()}:${date.getMinutes()}`,
+                    metricTemp: metricTemp,
+                    imperialTemp: imperialTemp,
                     text: text,
-                    unit: unit,
                     weatherIcon: oneDayIcon
                 },
-                notification: ''
+                notification: null
             }
         case DAILY_FORECAST_ERROR:
             return {
@@ -87,20 +88,21 @@ export const homeReducer = (state = initialState, action) => {
             let arr = []
             action.payload.DailyForecasts.forEach(i => {
                 const date = new Date(i.Date)
-                const max = i.Temperature.Maximum.Value
-                const min = i.Temperature.Minimum.Value
+                const max = Math.round(i.Temperature.Maximum.Value)
+                const min = Math.round(i.Temperature.Minimum.Value)
                 const fiveDayIcon = i.Day.Icon
-                arr.push({
+                const fiveDaysArr = {
                     date: `${shortWeekday[date.getDay()]}`,
                     min: min,
                     max: max,
                     fiveDayIcon: fiveDayIcon
-                })
+                }
+                arr.push(fiveDaysArr)
             })
             return {
                 ...state,
                 daily: arr,
-                notification: ''
+                notification: null
             }
         case FIVE_DAY_FORECAST_ERROR:
             return {
@@ -135,6 +137,16 @@ export const homeReducer = (state = initialState, action) => {
                 ...state,
                 city: action.payload[0],
                 cityKey: action.payload[1]
+            }
+        case CONVERT_TO_FAHRENHEIT:
+            return {
+                ...state,
+                daily: action.payload
+            }
+        case CONVERT_TO_CELSIUM:
+            return {
+                ...state,
+                daily: action.payload
             }
         default:
             return state

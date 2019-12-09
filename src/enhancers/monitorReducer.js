@@ -15,9 +15,7 @@ const monitorReducerEnhancer = createStore => (
 
     return newState
   }
-
   return createStore(monitoredReducer, initialState, enhancer)
 }
-
 export default monitorReducerEnhancer
 

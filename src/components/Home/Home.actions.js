@@ -20,9 +20,7 @@ export const GET_SELECTED_CITY = 'GET_SELECTED_CITY'
 
 export const getPosition = () => {
     return (dispatch) => {
-
         dispatch({ type: FETCHING_LOCATION })
-
         const getLatLon = function (options) {
             return new Promise(function (resolve, reject) {
                 if (navigator.geolocation) {
@@ -54,9 +52,7 @@ export const getPosition = () => {
 }
 export const loadDailyForecast = (cityKey) => {
     return dispatch => {
-
         dispatch({ type: LOADING_DAILY_FORECAST })
-
         getDailyForecast(cityKey)
             .then((data) => {
                 dispatch({
@@ -74,9 +70,7 @@ export const loadDailyForecast = (cityKey) => {
 }
 export const loadFiveDayForecast = (cityKey) => {
     return dispatch => {
-
         dispatch({ type: LOADING_FIVE_DAY_FORECAST })
-
         getFiveDayForecast(cityKey)
             .then((data) => {
                 dispatch({
@@ -94,9 +88,7 @@ export const loadFiveDayForecast = (cityKey) => {
 }
 export const loadCitiesList = (inputValue, callback) => {
     return dispatch => {
-
         dispatch({ type: LOADING_CITIES_LIST })
-
         let tempArr = []
         getAutoComplete(inputValue)
             .then((data) => {

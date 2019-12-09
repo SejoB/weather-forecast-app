@@ -1,12 +1,11 @@
 import { withStyles } from '@material-ui/core/styles'
 
 import DeleteIcon from '@material-ui/icons/Delete';
-import  Typography from '@material-ui/core/Typography'
-import  Grid from '@material-ui/core/Grid'
-import  Paper from '@material-ui/core/Paper'
-import  Container from '@material-ui/core/Container'
-import  Card from '@material-ui/core/Card'
-
+import Typography from '@material-ui/core/Typography'
+import Grid from '@material-ui/core/Grid'
+import Paper from '@material-ui/core/Paper'
+import Container from '@material-ui/core/Container'
+import Card from '@material-ui/core/Card'
 
 export const FDIcon = withStyles({
     root: {
@@ -39,7 +38,9 @@ export const FTypography = withStyles({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        overflow: 'hidden',
+        whiteSpace: 'nowrap'
     }
 })(Typography)
 export const FGrid = withStyles({

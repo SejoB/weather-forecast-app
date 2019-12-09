@@ -8,7 +8,8 @@ import monitorReducersEnhancer from '../enhancers/monitorReducer'
 
 import rootReducer from '../configureStore/root.reducer'
 
-export default function configureStore(preloadedState) {
+
+export default function configureStore() {
 
     const middlewares = [thunkMiddleware, loggerMiddleware]
     const middlewareEnhancer = applyMiddleware(...middlewares)
@@ -16,7 +17,7 @@ export default function configureStore(preloadedState) {
     const enhancers = [middlewareEnhancer, monitorReducersEnhancer]
     const composedEnhansers = composeWithDevTools(...enhancers)
 
-    const store = createStore(rootReducer, preloadedState, composedEnhansers)
+    const store = createStore(rootReducer, composedEnhansers)
 
     return store
 }
