@@ -1,48 +1,24 @@
 import { withStyles } from '@material-ui/core/styles'
 
-import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from '@material-ui/icons/Delete'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
 import Container from '@material-ui/core/Container'
 import Card from '@material-ui/core/Card'
 
 export const FDIcon = withStyles({
     root: {
         cursor: 'pointer',
-        color: 'darkgrey'
+        color: 'white'
     }
 })(DeleteIcon)
 export const FContainer = withStyles({
     root: {
         display: 'flex',
-        maxWidth: '38rem'
+        maxWidth: '38rem',
+        justifyContent: 'center'
     }
 })(Container)
-export const ItemCard = withStyles({
-    root: {
-        height: '4rem',
-        width: '20rem',
-        margin: '1rem 0 1rem 0',
-        padding: '1rem',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-    }
-})(Card)
-export const FTypography = withStyles({
-    root: {
-        fontSize: '2rem',
-        color: 'darkgrey',
-        fontWeight: 500,
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        cursor: 'pointer',
-        overflow: 'hidden',
-        whiteSpace: 'nowrap'
-    }
-})(Typography)
 export const FGrid = withStyles({
     root: {
         display: 'flex',
@@ -54,8 +30,31 @@ export const FGrid = withStyles({
         overflow: 'overlay'
     }
 })(Grid)
-export const FPaper = withStyles({
+export const ItemGrid = withStyles({
     root: {
-        marginTop: '1rem'
+        height: '4rem',
+        width: '20rem',
+        margin: '1rem 0 1rem 0',
+        padding: '1rem',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: 'transparent',
+        boxShadow: 'none',
+        border: '1px solid #526984',
+        borderRadius: '10px'
     }
-})(Paper)
+})(Card)
+export const FTypography = withStyles({
+    root: {
+        fontSize: '2rem',
+        color: 'white',
+        fontWeight: 500,
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        cursor: 'pointer',
+        overflow: 'hidden',
+        whiteSpace: 'nowrap'
+    }
+})(Typography)

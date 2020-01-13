@@ -1,19 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loadFavoritesList, deleteFavoritesCity, loadFavoritesCity } from './Favorites.actions'
-import Grid from '@material-ui/core/Grid'
-import { FContainer, ItemCard, FTypography, FPaper, FGrid, FDIcon } from './Favorites.styles'
+import { ItemGrid, FTypography, FGrid, FDIcon } from './Favorites.styles'
 
 class Favorites extends Component {
-
     componentDidMount() {
         this.props.doLoadFavoritesList()
     }
-    getFavoriteCityHandler = (value) => {
+    getFavoriteCityHandler = value => {
         this.props.doLoadFavoritesCity(value)
         this.props.history.push('/')
     }
-    deleteFavoritesHandler = (value) => {
+    deleteFavoritesHandler = value => {
         const arr = this.props.favorites
         this.props.doDeleteFavoritesCity(value)
         if (arr.length <= 1) {
@@ -23,28 +21,19 @@ class Favorites extends Component {
     render() {
         const favorites = this.props.favorites
         return (
-            <FContainer>
-                <FPaper>
-                    <FGrid container>
-                        {favorites.map((value, key) => (
-                            <Grid item key={key}>
-                                <ItemCard>
-                                    <FTypography onClick={() => this.getFavoriteCityHandler(value)}>{value[0]}</FTypography>
-                                    <FDIcon onClick={() => this.deleteFavoritesHandler(value[0])} />
-                                </ItemCard>
-                            </Grid>
-                        ))}
-                    </FGrid>
-                </FPaper>
-            </FContainer>
-
+            <FGrid container>
+                {favorites.map((value, key) => (
+                    <ItemGrid item key={key}>
+                        <FTypography onClick={() => this.getFavoriteCityHandler(value)}>{value[0]}</FTypography>
+                        <FDIcon onClick={() => this.deleteFavoritesHandler(value[0])} />
+                    </ItemGrid>
+                ))}
+            </FGrid>
         )
     }
 }
 const mapStateToProps = state => {
-    const {
-        favorites
-    } = state.favorite
+    const { favorites } = state.favorite
     return {
         favorites
     }
@@ -52,8 +41,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         doLoadFavoritesList: () => dispatch(loadFavoritesList()),
-        doDeleteFavoritesCity: (value) => dispatch(deleteFavoritesCity(value)),
-        doLoadFavoritesCity: (value) => dispatch(loadFavoritesCity(value))
+        doDeleteFavoritesCity: value => dispatch(deleteFavoritesCity(value)),
+        doLoadFavoritesCity: value => dispatch(loadFavoritesCity(value))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Favorites)

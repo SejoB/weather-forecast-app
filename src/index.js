@@ -9,13 +9,13 @@ import Root from './Root'
 
 import configureStore from './configureStore'
 
-import {getPosition} from '../src/components/Home/Home.actions'
+import { getPosition } from '../src/components/Home/Home.actions'
 
 const store = configureStore()
 
 store.dispatch(getPosition())
 
-ReactDOM.render(<Root store={store}/>, document.getElementById('root'))
+ReactDOM.render(<Root store={store} />, document.getElementById('root'))
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

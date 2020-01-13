@@ -19,10 +19,10 @@ export const CITIES_LIST_ERROR = 'CITIES_LIST_ERROR'
 export const GET_SELECTED_CITY = 'GET_SELECTED_CITY'
 
 export const getPosition = () => {
-    return (dispatch) => {
+    return dispatch => {
         dispatch({ type: FETCHING_LOCATION })
-        const getLatLon = function (options) {
-            return new Promise(function (resolve, reject) {
+        const getLatLon = function(options) {
+            return new Promise(function(resolve, reject) {
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(resolve, reject, options)
                 } else {
@@ -31,16 +31,15 @@ export const getPosition = () => {
             })
         }
         getLatLon()
-            .then((position) => {
+            .then(position => {
                 const lat = position.coords.latitude
                 const lon = position.coords.longitude
-                getGeoPosition(lat, lon)
-                    .then(data =>
-                        dispatch({
-                            type: FETCHED_LOCATION,
-                            payload: data
-                        })
-                    )
+                getGeoPosition(lat, lon).then(data =>
+                    dispatch({
+                        type: FETCHED_LOCATION,
+                        payload: data
+                    })
+                )
             })
             .catch(err =>
                 dispatch({
@@ -50,11 +49,11 @@ export const getPosition = () => {
             )
     }
 }
-export const loadDailyForecast = (cityKey) => {
+export const loadDailyForecast = cityKey => {
     return dispatch => {
         dispatch({ type: LOADING_DAILY_FORECAST })
         getDailyForecast(cityKey)
-            .then((data) => {
+            .then(data => {
                 dispatch({
                     type: DAILY_FORECAST_LOADED,
                     payload: data
@@ -68,11 +67,11 @@ export const loadDailyForecast = (cityKey) => {
             )
     }
 }
-export const loadFiveDayForecast = (cityKey) => {
+export const loadFiveDayForecast = cityKey => {
     return dispatch => {
         dispatch({ type: LOADING_FIVE_DAY_FORECAST })
         getFiveDayForecast(cityKey)
-            .then((data) => {
+            .then(data => {
                 dispatch({
                     type: FIVE_DAY_FORECAST_LOADED,
                     payload: data
@@ -91,9 +90,9 @@ export const loadCitiesList = (inputValue, callback) => {
         dispatch({ type: LOADING_CITIES_LIST })
         let tempArr = []
         getAutoComplete(inputValue)
-            .then((data) => {
+            .then(data => {
                 dispatch({
-                    type: CITIES_LIST_LOADED,
+                    type: CITIES_LIST_LOADED
                 })
                 data.forEach(i => {
                     tempArr.push({ label: i.LocalizedName, key: i.Key })
@@ -108,7 +107,7 @@ export const loadCitiesList = (inputValue, callback) => {
             )
     }
 }
-export const getSelectedCity = (selectedCity) => {
+export const getSelectedCity = selectedCity => {
     return dispatch => {
         dispatch({
             type: GET_SELECTED_CITY,

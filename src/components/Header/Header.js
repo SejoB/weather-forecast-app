@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { AppContainer, HTitle, HButton, ThemeIcon, ThemeButton} from './Header.styles'
+import { AppContainer, HTitle, HButton, ThemeButton, ThemeIcon } from './Header.styles'
 import Toolbar from '@material-ui/core/Toolbar'
 
 import { changeTheme } from '../../theme/theme.reducer'
@@ -11,7 +11,7 @@ const AdapterLink = React.forwardRef((props, ref) => <Link innerRef={ref} {...pr
 
 class Header extends Component {
     state = {
-        selected: false,
+        selected: false
     }
     changeThemeHandler = () => {
         let selected = this.state.selected
@@ -23,7 +23,7 @@ class Header extends Component {
         } else {
             this.props.doChangeTheme(selected)
             this.setState({
-                selected: false,
+                selected: false
             })
         }
     }
@@ -33,12 +33,13 @@ class Header extends Component {
             <AppContainer>
                 <Toolbar>
                     <HTitle>Forecast Application</HTitle>
-                    <HButton to='/' component={AdapterLink}>HOME</HButton>
-                    <HButton to='/favorites' component={AdapterLink}>FAVORITES</HButton>
-                    <ThemeButton value='ThemeIcon'
-                        onChange={this.changeThemeHandler}
-                        selected={selected}
-                    >
+                    <HButton to='/' component={AdapterLink}>
+                        HOME
+                    </HButton>
+                    <HButton to='/favorites' component={AdapterLink}>
+                        FAVORITES
+                    </HButton>
+                    <ThemeButton value='ThemeIcon' onChange={this.changeThemeHandler} selected={selected}>
                         <ThemeIcon />
                     </ThemeButton>
                 </Toolbar>
@@ -48,7 +49,7 @@ class Header extends Component {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        doChangeTheme: (selected) => dispatch(changeTheme(selected)),
+        doChangeTheme: selected => dispatch(changeTheme(selected))
     }
 }
 export default connect(null, mapDispatchToProps)(Header)

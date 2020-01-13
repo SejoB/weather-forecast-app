@@ -2,10 +2,13 @@ const DARK_THEME = 'DARK_THEME'
 const LIGHT_THEME = 'LIGHT_THEME'
 
 let initialState = {
-    themeMode: 'light'
+    themeMode: {
+        mode: 'light',
+        backGround: 'linear-gradient(to bottom right, #36516f, #394655, #2b3541)'
+    }
 }
-export const changeTheme = (selected) => {
-    return (dispatch) => {
+export const changeTheme = selected => {
+    return dispatch => {
         if (!selected) {
             dispatch({ type: DARK_THEME })
         } else {
@@ -18,13 +21,18 @@ export const themeReducer = (state = initialState, action) => {
         case LIGHT_THEME:
             return {
                 ...state,
-                themeMode: 'light'
+                themeMode: {
+                    mode: 'light',
+                    backGround: 'linear-gradient(to bottom right, #36516f, #394655, #2b3541)'
+                }
             }
         case DARK_THEME:
-
             return {
                 ...state,
-                themeMode: 'dark'
+                themeMode: {
+                    mode: 'dark',
+                    backGround: 'linear-gradient(to bottom right, #333030, #303030, #1d1b1b)'
+                }
             }
         default:
             return state

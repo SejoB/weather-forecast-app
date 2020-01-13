@@ -1,8 +1,4 @@
-import {
-    ADD_TO_FAVORITE,
-    DELETE_FROM_FAVORITE,
-    LOAD_FAVORITE_LIST,
-} from './Favorites.actions'
+import { ADD_TO_FAVORITE, DELETE_FROM_FAVORITE, LOAD_FAVORITE_LIST } from './Favorites.actions'
 
 let initialState = {
     favorites: [],

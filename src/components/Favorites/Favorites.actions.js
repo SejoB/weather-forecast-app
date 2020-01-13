@@ -19,7 +19,7 @@ export const loadFavoritesList = () => {
         })
     }
 }
-export const deleteFavoritesCity = (value) => {
+export const deleteFavoritesCity = value => {
     return dispatch => {
         localStorage.removeItem(value)
         const fav = { ...localStorage }
@@ -30,7 +30,7 @@ export const deleteFavoritesCity = (value) => {
         })
     }
 }
-export const loadFavoritesCity = (value) => {
+export const loadFavoritesCity = value => {
     return dispatch => {
         dispatch({
             type: LOAD_CITY_FROM_FAVORITES,

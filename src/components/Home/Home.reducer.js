@@ -59,9 +59,9 @@ export const homeReducer = (state = initialState, action) => {
             const weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
             const date = new Date(action.payload[0].LocalObservationDateTime)
             const metricTemp = Math.round(action.payload[0].Temperature.Metric.Value)
-            const imperialTemp = (action.payload[0].Temperature.Imperial.Value)
-            const text = (action.payload[0].WeatherText)
-            const oneDayIcon = (action.payload[0].WeatherIcon)
+            const imperialTemp = action.payload[0].Temperature.Imperial.Value
+            const text = action.payload[0].WeatherText
+            const oneDayIcon = action.payload[0].WeatherIcon
             return {
                 ...state,
                 oneDay: {
@@ -152,4 +152,3 @@ export const homeReducer = (state = initialState, action) => {
             return state
     }
 }
-

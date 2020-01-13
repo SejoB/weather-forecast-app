@@ -8,9 +8,7 @@ import monitorReducersEnhancer from '../enhancers/monitorReducer'
 
 import rootReducer from '../configureStore/root.reducer'
 
-
 export default function configureStore() {
-
     const middlewares = [thunkMiddleware, loggerMiddleware]
     const middlewareEnhancer = applyMiddleware(...middlewares)
 

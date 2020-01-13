@@ -1,12 +1,12 @@
 export const CONVERT_TO_CELSIUM = 'CONVERT_TO_CELSIUM'
 export const CONVERT_TO_FAHRENHEIT = 'CONVERT_TO_FAHRENHEIT'
 
-export const convertCelsToFahr = (obj) => {
+export const convertCelsToFahr = obj => {
     return dispatch => {
         const tmp = []
         obj.forEach(i => {
-            const min = Math.round((i.min * 1.8) + 32)
-            const max = Math.round((i.max * 1.8) + 32)
+            const min = Math.round(i.min * 1.8 + 32)
+            const max = Math.round(i.max * 1.8 + 32)
             const obj = {
                 ...i,
                 min: min,
@@ -20,7 +20,7 @@ export const convertCelsToFahr = (obj) => {
         })
     }
 }
-export const convertFahrToCels = (obj) => {
+export const convertFahrToCels = obj => {
     return dispatch => {
         const tmp = []
         obj.forEach(i => {
@@ -36,7 +36,6 @@ export const convertFahrToCels = (obj) => {
         dispatch({
             type: CONVERT_TO_FAHRENHEIT,
             payload: tmp
-
         })
     }
 }
