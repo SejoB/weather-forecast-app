@@ -10,9 +10,9 @@ import App from './components/App'
 import theme from '../src/theme/theme'
 
 class Root extends Component {
-    render() {
+    render () {
         const themeMode = this.props.themeMode
-        const darkTheme = createMuiTheme({
+        const darkTheme = createMuiTheme( {
             ...theme,
             overrides: {
                 MuiCssBaseline: {
@@ -21,7 +21,10 @@ class Root extends Component {
                             height: '100%',
                             width: '100%',
                             fontSize: '10px',
-                            '@media (min-width:600px)': {
+                            '@media (min-width:670px)': {
+                                fontSize: '10px'
+                            },
+                            '@media (min-width:770px)': {
                                 fontSize: '12px'
                             },
                             '@media (min-width:960px)': {
@@ -46,11 +49,11 @@ class Root extends Component {
             palette: {
                 type: themeMode.mode
             }
-        })
+        } )
         return (
-            <Provider store={this.props.store}>
+            <Provider store={ this.props.store }>
                 <HashRouter>
-                    <MuiThemeProvider theme={darkTheme}>
+                    <MuiThemeProvider theme={ darkTheme }>
                         <CssBaseline />
                         <App />
                     </MuiThemeProvider>
@@ -65,4 +68,4 @@ const mapStateToProps = state => {
         themeMode
     }
 }
-export default connect(mapStateToProps, null)(Root)
+export default connect( mapStateToProps, null )( Root )

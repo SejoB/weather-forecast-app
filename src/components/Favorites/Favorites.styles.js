@@ -3,23 +3,15 @@ import { withStyles } from '@material-ui/core/styles'
 import DeleteIcon from '@material-ui/icons/Delete'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
-import Container from '@material-ui/core/Container'
 import Card from '@material-ui/core/Card'
 
-export const FDIcon = withStyles({
+export const FDIcon = withStyles( {
     root: {
         cursor: 'pointer',
         color: 'white'
     }
-})(DeleteIcon)
-export const FContainer = withStyles({
-    root: {
-        display: 'flex',
-        maxWidth: '38rem',
-        justifyContent: 'center'
-    }
-})(Container)
-export const FGrid = withStyles({
+} )( DeleteIcon )
+export const FGrid = withStyles( {
     root: {
         display: 'flex',
         flexDirection: 'column',
@@ -29,8 +21,8 @@ export const FGrid = withStyles({
         padding: '0 2rem 0 2rem',
         overflow: 'overlay'
     }
-})(Grid)
-export const ItemGrid = withStyles({
+} )( Grid )
+export const ItemGrid = withStyles( {
     root: {
         height: '4rem',
         width: '20rem',
@@ -44,8 +36,8 @@ export const ItemGrid = withStyles({
         border: '1px solid #526984',
         borderRadius: '10px'
     }
-})(Card)
-export const FTypography = withStyles({
+} )( Card )
+export const FTypography = withStyles( {
     root: {
         fontSize: '2rem',
         color: 'white',
@@ -57,4 +49,4 @@ export const FTypography = withStyles({
         overflow: 'hidden',
         whiteSpace: 'nowrap'
     }
-})(Typography)
+} )( Typography )

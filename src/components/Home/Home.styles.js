@@ -1,5 +1,4 @@
 import { withStyles } from '@material-ui/core/styles'
-import theme from './../../theme/theme'
 import Container from '@material-ui/core/Container'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
@@ -8,7 +7,7 @@ import Avatar from '@material-ui/core/Avatar'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import ToggleButton from '@material-ui/lab/ToggleButton'
 
-export const ForecastContainer = withStyles({
+export const ForecastContainer = withStyles( {
     root: {
         maxWidth: '70%',
         display: 'flex',
@@ -17,26 +16,26 @@ export const ForecastContainer = withStyles({
         borderRadius: '25px',
         border: '1px solid #526984',
         alignItems: 'center',
-        [theme.breakpoints.down('xs')]: {
+        '@media (max-width: 670px)': {
             border: 'none',
             maxWidth: '100%',
             height: '100%'
         }
     }
-})(Container)
-export const OneDayGridContainer = withStyles({
+} )( Container )
+export const OneDayGridContainer = withStyles( {
     root: {
         display: 'flex',
         justifyContent: 'space-between',
         minWidth: '16.875rem',
         padding: '0 1.6rem 2rem',
-        [theme.breakpoints.down('xs')]: {
+        '@media (max-width: 670px)': {
             width: '100%',
             padding: '0 1rem'
         }
     }
-})(Grid)
-export const OneDayWidget = withStyles({
+} )( Grid )
+export const OneDayWidget = withStyles( {
     root: {
         display: 'flex',
         flexDirection: 'column',
@@ -44,25 +43,25 @@ export const OneDayWidget = withStyles({
         padding: '10px 20px',
         borderRadius: '25px',
         border: '1px solid #526984',
-        [theme.breakpoints.down('xs')]: {
+        '@media (max-width: 670px)': {
             width: '100%'
         }
     }
-})(Grid)
-export const OneDayCityFavBtnGrid = withStyles({
+} )( Grid )
+export const OneDayCityFavBtnGrid = withStyles( {
     root: {
         justifyContent: 'space-between',
         flexWrap: 'nowrap',
         display: 'flex'
     }
-})(Grid)
-export const OneDayTempIcnGrid = withStyles({
+} )( Grid )
+export const OneDayTempIcnGrid = withStyles( {
     root: {
         display: 'flex',
         flexDirection: 'column'
     }
-})(Grid)
-export const TypographyCity = withStyles({
+} )( Grid )
+export const TypographyCity = withStyles( {
     root: {
         fontSize: '2rem',
         color: 'white',
@@ -72,15 +71,15 @@ export const TypographyCity = withStyles({
         alignItems: 'center',
         whiteSpace: 'nowrap'
     }
-})(Typography)
-export const TypographyDate = withStyles({
+} )( Typography )
+export const TypographyDate = withStyles( {
     root: {
         fontSize: '1.5rem',
         color: 'white',
         fontWeight: 100
     }
-})(Typography)
-export const TypographyTemp = withStyles({
+} )( Typography )
+export const TypographyTemp = withStyles( {
     root: {
         display: 'inline-flex',
         fontSize: '5.5rem',
@@ -88,40 +87,40 @@ export const TypographyTemp = withStyles({
         color: 'white',
         fontWeight: 100
     }
-})(Typography)
-export const ToggleFahrCel = withStyles({
+} )( Typography )
+export const ToggleFahrCel = withStyles( {
     root: {
         fontSize: '1.3rem',
         fontWeight: 300,
         color: 'grey'
     }
-})(ToggleButton)
-export const AvatarIcon = withStyles({
+} )( ToggleButton )
+export const AvatarIcon = withStyles( {
     root: {
         alignSelf: 'center'
     }
-})(Avatar)
-export const FButton = withStyles({
+} )( Avatar )
+export const FButton = withStyles( {
     root: {
         whiteSpace: 'nowrap',
         color: 'white',
         borderRadius: '10px',
         border: '1px solid #526984',
-        [theme.breakpoints.down('xs')]: {
+        '@media (max-width: 670px)': {
             display: 'none'
         }
     }
-})(Button)
-export const FIcon = withStyles({
+} )( Button )
+export const FIcon = withStyles( {
     root: {
         display: 'none',
-        [theme.breakpoints.down('xs')]: {
+        '@media (max-width: 670px)': {
             display: 'inline-block',
             fontSize: '2.5rem'
         }
     }
-})(FavoriteIcon)
-export const FTypography = withStyles({
+} )( FavoriteIcon )
+export const FTypography = withStyles( {
     root: {
         fontSize: '2rem',
         display: 'flex',
@@ -130,25 +129,26 @@ export const FTypography = withStyles({
         color: 'white',
         justifyContent: 'flex-end'
     }
-})(Typography)
-export const FiveDayGridCont = withStyles({
+} )( Typography )
+export const FiveDayGridCont = withStyles( {
     root: {
         justifyContent: 'space-evenly',
         display: 'flex',
         marginTop: '3rem',
-        [theme.breakpoints.down('xs')]: {
+        flexWrap: 'nowrap',
+        '@media (max-width: 670px)': {
             flexDirection: 'column',
             overflow: 'scroll',
-            height: '56vh',
+            height: '50vh',
             flexWrap: 'inherit',
             justifyContent: 'flex-start',
             marginTop: '1rem',
             padding: '0 1rem'
         }
     }
-})(Grid)
+} )( Grid )
 
-export const FiveDayGridItem = withStyles({
+export const FiveDayGridItem = withStyles( {
     root: {
         display: 'flex',
         flexDirection: 'column',
@@ -156,38 +156,38 @@ export const FiveDayGridItem = withStyles({
         minWidth: '9rem',
         borderRadius: '25px',
         border: '1px solid #526984',
-        [theme.breakpoints.down('xs')]: {
+        '@media (max-width: 670px)': {
             marginBottom: '1rem'
         }
     }
-})(Grid)
-export const FiveDayGrid = withStyles({
+} )( Grid )
+export const FiveDayGrid = withStyles( {
     root: {
         display: 'flex',
         justifyContent: 'space-around'
     }
-})(Grid)
-export const TypographyDay = withStyles({
+} )( Grid )
+export const TypographyDay = withStyles( {
     root: {
         fontWeight: 500,
         color: 'white',
         alignSelf: 'center',
         fontSize: '2rem'
     }
-})(Typography)
-export const TypographyMin = withStyles({
+} )( Typography )
+export const TypographyMin = withStyles( {
     root: {
         fontWeight: 400,
         color: 'white',
         alignSelf: 'center',
         fontSize: '1.5rem'
     }
-})(Typography)
-export const TypographyMax = withStyles({
+} )( Typography )
+export const TypographyMax = withStyles( {
     root: {
         fontWeight: 400,
         color: 'white',
         alignSelf: 'center',
         fontSize: '1.5rem'
     }
-})(Typography)
+} )( Typography )

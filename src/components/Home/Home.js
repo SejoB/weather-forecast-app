@@ -38,212 +38,212 @@ class Home extends Component {
         measure: 'celsium',
         loading: true
     }
-    componentDidMount() {
+    componentDidMount () {
         const { city, cityKey, doLoadDailyForecast, doLoadFiveDayForecast, daily, oneDay } = this.props
-        if (daily && oneDay) {
-            setTimeout(() => {
-                return this.setState({
+        if ( daily && oneDay ) {
+            setTimeout( () => {
+                return this.setState( {
                     loading: false
-                })
-            }, 2500)
+                } )
+            }, 2500 )
         }
-        if (cityKey) {
-            doLoadFiveDayForecast(cityKey)
-            doLoadDailyForecast(cityKey)
+        if ( cityKey ) {
+            doLoadFiveDayForecast( cityKey )
+            doLoadDailyForecast( cityKey )
         }
-        if (city) {
-            this.checkCityInFav(city)
+        if ( city ) {
+            this.checkCityInFav( city )
         }
     }
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate ( prevProps, prevState ) {
         const { city, cityKey, doLoadDailyForecast, doLoadFiveDayForecast } = this.props
-        if (this.props.cityKey !== prevProps.cityKey) {
-            doLoadFiveDayForecast(cityKey)
-            doLoadDailyForecast(cityKey)
+        if ( this.props.cityKey !== prevProps.cityKey ) {
+            doLoadFiveDayForecast( cityKey )
+            doLoadDailyForecast( cityKey )
         }
-        if (this.props.city !== prevProps.city) {
-            this.checkCityInFav(city)
+        if ( this.props.city !== prevProps.city ) {
+            this.checkCityInFav( city )
         }
     }
     addFavoritesHandler = () => {
         const { city, cityKey, doAddFavoritesHandler } = this.props
-        doAddFavoritesHandler(city, cityKey)
-        this.setState({
+        doAddFavoritesHandler( city, cityKey )
+        this.setState( {
             favColor: true
-        })
+        } )
     }
     checkCityInFav = city => {
         let fav = { ...localStorage }
-        for (let item in fav) {
-            if (item === city) {
-                return this.setState({
+        for ( let item in fav ) {
+            if ( item === city ) {
+                return this.setState( {
                     favColor: true
-                })
+                } )
             } else {
-                this.setState({
+                this.setState( {
                     favColor: false
-                })
+                } )
             }
         }
     }
-    changeMeasurementHandler = (event, newMeasure) => {
+    changeMeasurementHandler = ( event, newMeasure ) => {
         const obj = this.props.daily
-        switch (newMeasure) {
+        switch ( newMeasure ) {
             case 'fahrenheit':
-                this.props.doConvertCelsToFahr(obj)
-                return this.setState({
+                this.props.doConvertCelsToFahr( obj )
+                return this.setState( {
                     measure: 'fahrenheit'
-                })
+                } )
             case 'celsium':
-                this.props.doConvertFahrToCels(obj)
-                return this.setState({
+                this.props.doConvertFahrToCels( obj )
+                return this.setState( {
                     measure: 'celsium'
-                })
+                } )
             default:
                 return this.state
         }
     }
 
-    render() {
+    render () {
         const { oneDay, daily, city } = this.props
         const { doLoadCitiesList, doGetSelectedCity, selectedCity } = this.props
         const { favColor, measure, loading } = this.state
         const favoritesBtn = { color: favColor ? 'red' : '' }
         return (
             <ForecastContainer>
-                <AsyncSelect styles={asyncStyles} value={selectedCity} loadOptions={doLoadCitiesList} onChange={doGetSelectedCity} />
+                <AsyncSelect styles={ asyncStyles } value={ selectedCity } loadOptions={ doLoadCitiesList } onChange={ doGetSelectedCity } />
                 <OneDayGridContainer container>
                     <OneDayWidget item>
                         <OneDayCityFavBtnGrid item>
-                            {loading ? (
+                            { loading ? (
                                 <Skeleton
                                     variant='text'
-                                    width={190}
-                                    style={{
+                                    width={ 190 }
+                                    style={ {
                                         fontSize: '2rem',
                                         borderRadius: '10px'
-                                    }}
+                                    } }
                                 />
                             ) : (
-                                <>
-                                    <TypographyCity>{city ? city : 'City'}</TypographyCity>
-                                    <FIcon
-                                        style={{
-                                            color: favColor ? 'red' : '',
-                                            alignSelf: 'center'
-                                        }}
-                                        onClick={this.addFavoritesHandler}
-                                    />
-                                </>
-                            )}
+                                    <>
+                                        <TypographyCity>{ city ? city : 'City' }</TypographyCity>
+                                        <FIcon
+                                            style={ {
+                                                color: favColor ? 'red' : '',
+                                                alignSelf: 'center'
+                                            } }
+                                            onClick={ this.addFavoritesHandler }
+                                        />
+                                    </>
+                                ) }
                         </OneDayCityFavBtnGrid>
-                        {loading ? (
+                        { loading ? (
                             <Skeleton
                                 variant='text'
-                                width={120}
-                                style={{
+                                width={ 120 }
+                                style={ {
                                     fontSize: '1.5rem',
                                     borderRadius: '10px'
-                                }}
+                                } }
                             />
                         ) : (
-                            <TypographyDate>{oneDay.date}</TypographyDate>
-                        )}
+                                <TypographyDate>{ oneDay.date }</TypographyDate>
+                            ) }
                         <OneDayTempIcnGrid container>
-                            <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-                                {loading ? (
+                            <div style={ { display: 'flex', justifyContent: 'space-evenly' } }>
+                                { loading ? (
                                     <Skeleton
                                         variant='text'
-                                        width={200}
-                                        style={{
+                                        width={ 200 }
+                                        style={ {
                                             fontSize: '5.5rem',
                                             borderRadius: '10px'
-                                        }}
+                                        } }
                                     />
                                 ) : (
-                                    <TypographyTemp>{measure === 'celsium' ? oneDay.metricTemp : oneDay.imperialTemp}</TypographyTemp>
-                                )}
-                                {loading ? null : (
+                                        <TypographyTemp>{ measure === 'celsium' ? oneDay.metricTemp : oneDay.imperialTemp }</TypographyTemp>
+                                    ) }
+                                { loading ? null : (
                                     <ToggleButtonGroup
                                         exclusive
-                                        onChange={this.changeMeasurementHandler}
-                                        value={measure}
+                                        onChange={ this.changeMeasurementHandler }
+                                        value={ measure }
                                         size='medium'
-                                        style={{
+                                        style={ {
                                             alignSelf: 'center',
                                             backgroundColor: 'transparent'
-                                        }}
+                                        } }
                                     >
-                                        <ToggleFahrCel value='celsium'>{'C°'}</ToggleFahrCel>
-                                        <ToggleFahrCel value='fahrenheit'>{'F°'}</ToggleFahrCel>
+                                        <ToggleFahrCel value='celsium'>{ 'C°' }</ToggleFahrCel>
+                                        <ToggleFahrCel value='fahrenheit'>{ 'F°' }</ToggleFahrCel>
                                     </ToggleButtonGroup>
-                                )}
+                                ) }
                             </div>
-                            {loading ? (
+                            { loading ? (
                                 <div
-                                    style={{
+                                    style={ {
                                         display: 'flex',
                                         justifyContent: 'flex-end'
-                                    }}
+                                    } }
                                 >
                                     <Skeleton
                                         variant='circle'
-                                        width={40}
-                                        height={40}
-                                        style={{
+                                        width={ 40 }
+                                        height={ 40 }
+                                        style={ {
                                             marginRight: '14px'
-                                        }}
+                                        } }
                                     />
                                     <Skeleton
                                         variant='text'
-                                        width={120}
-                                        style={{
+                                        width={ 120 }
+                                        style={ {
                                             fontSize: '2rem',
                                             borderRadius: '10px'
-                                        }}
+                                        } }
                                     />
                                 </div>
                             ) : (
-                                <FTypography component='div'>
-                                    <AvatarIcon src={'https://raw.githubusercontent.com/SejoB/Sergey-Bekker-04-09-2019/master/public/weatherIcons/' + oneDay.weatherIcon + '-s.png'} alt='icon' />
-                                    {oneDay.text}
-                                </FTypography>
-                            )}
+                                    <FTypography component='div'>
+                                        <AvatarIcon src={ 'https://raw.githubusercontent.com/SejoB/Sergey-Bekker-04-09-2019/master/public/weatherIcons/' + oneDay.weatherIcon + '-s.png' } alt='icon' />
+                                        { oneDay.text }
+                                    </FTypography>
+                                ) }
                         </OneDayTempIcnGrid>
                     </OneDayWidget>
                     <Grid item>
-                        <FButton style={favoritesBtn} onClick={this.addFavoritesHandler}>
+                        <FButton style={ favoritesBtn } onClick={ this.addFavoritesHandler }>
                             Add to Favorites
                         </FButton>
                     </Grid>
                 </OneDayGridContainer>
                 <FiveDayGridCont container>
-                    {daily.map((d, key) => {
+                    { daily.map( ( d, key ) => {
                         return (
-                            <FiveDayGridItem key={key} item>
-                                {loading ? (
-                                    <Skeleton variant='circle' style={{ width: '40px', height: '40px', alignSelf: 'center' }} />
+                            <FiveDayGridItem key={ key } item>
+                                { loading ? (
+                                    <Skeleton variant='circle' style={ { width: '40px', height: '40px', alignSelf: 'center' } } />
                                 ) : (
-                                    <AvatarIcon src={'https://raw.githubusercontent.com/SejoB/Sergey-Bekker-04-09-2019/master/public/weatherIcons/' + d.fiveDayIcon + '-s.png'} alt='icon' />
-                                )}
-                                {loading ? <Skeleton variant='text' style={{ height: '48px', width: '54px', borderRadius: '10px', alignSelf: 'center' }} /> : <TypographyDay>{d.date}</TypographyDay>}
-                                {loading ? (
-                                    <Skeleton variant='text' style={{ height: '35px', width: '102px', borderRadius: '10px', alignSelf: 'center' }} />
+                                        <AvatarIcon src={ 'https://raw.githubusercontent.com/SejoB/Sergey-Bekker-04-09-2019/master/public/weatherIcons/' + d.fiveDayIcon + '-s.png' } alt='icon' />
+                                    ) }
+                                { loading ? <Skeleton variant='text' style={ { height: '48px', width: '54px', borderRadius: '10px', alignSelf: 'center' } } /> : <TypographyDay>{ d.date }</TypographyDay> }
+                                { loading ? (
+                                    <Skeleton variant='text' style={ { height: '35px', width: '102px', borderRadius: '10px', alignSelf: 'center' } } />
                                 ) : (
-                                    <FiveDayGrid container>
-                                        <TypographyMin>
-                                            {d.min}
-                                            {'°'}
-                                        </TypographyMin>
-                                        <TypographyMax>
-                                            {d.max}
-                                            {'°'}
-                                        </TypographyMax>
-                                    </FiveDayGrid>
-                                )}
+                                        <FiveDayGrid container>
+                                            <TypographyMin>
+                                                { d.min }
+                                                { '°' }
+                                            </TypographyMin>
+                                            <TypographyMax>
+                                                { d.max }
+                                                { '°' }
+                                            </TypographyMax>
+                                        </FiveDayGrid>
+                                    ) }
                             </FiveDayGridItem>
                         )
-                    })}
+                    } ) }
                 </FiveDayGridCont>
             </ForecastContainer>
         )
@@ -261,13 +261,13 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        doLoadDailyForecast: cityKey => dispatch(loadDailyForecast(cityKey)),
-        doLoadFiveDayForecast: cityKey => dispatch(loadFiveDayForecast(cityKey)),
-        doLoadCitiesList: (inputValue, callback) => dispatch(loadCitiesList(inputValue, callback)),
-        doGetSelectedCity: selectedCity => dispatch(getSelectedCity(selectedCity)),
-        doAddFavoritesHandler: (city, cityKey) => dispatch(addToFavorites(city, cityKey)),
-        doConvertCelsToFahr: obj => dispatch(convertCelsToFahr(obj)),
-        doConvertFahrToCels: obj => dispatch(convertFahrToCels(obj))
+        doLoadDailyForecast: cityKey => dispatch( loadDailyForecast( cityKey ) ),
+        doLoadFiveDayForecast: cityKey => dispatch( loadFiveDayForecast( cityKey ) ),
+        doLoadCitiesList: ( inputValue, callback ) => dispatch( loadCitiesList( inputValue, callback ) ),
+        doGetSelectedCity: selectedCity => dispatch( getSelectedCity( selectedCity ) ),
+        doAddFavoritesHandler: ( city, cityKey ) => dispatch( addToFavorites( city, cityKey ) ),
+        doConvertCelsToFahr: obj => dispatch( convertCelsToFahr( obj ) ),
+        doConvertFahrToCels: obj => dispatch( convertFahrToCels( obj ) )
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default connect( mapStateToProps, mapDispatchToProps )( Home )

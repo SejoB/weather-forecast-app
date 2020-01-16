@@ -20,98 +20,98 @@ export const GET_SELECTED_CITY = 'GET_SELECTED_CITY'
 
 export const getPosition = () => {
     return dispatch => {
-        dispatch({ type: FETCHING_LOCATION })
-        const getLatLon = function(options) {
-            return new Promise(function(resolve, reject) {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(resolve, reject, options)
+        dispatch( { type: FETCHING_LOCATION } )
+        const getLatLon = function ( options ) {
+            return new Promise( function ( resolve, reject ) {
+                if ( navigator.geolocation ) {
+                    navigator.geolocation.getCurrentPosition( resolve, reject, options )
                 } else {
-                    alert('Geolocation is not enabled')
+                    alert( 'Geolocation is not enabled' )
                 }
-            })
+            } )
         }
         getLatLon()
-            .then(position => {
+            .then( position => {
                 const lat = position.coords.latitude
                 const lon = position.coords.longitude
-                getGeoPosition(lat, lon).then(data =>
-                    dispatch({
+                getGeoPosition( lat, lon ).then( data =>
+                    dispatch( {
                         type: FETCHED_LOCATION,
                         payload: data
-                    })
+                    } )
                 )
-            })
-            .catch(err =>
-                dispatch({
+            } )
+            .catch( err =>
+                dispatch( {
                     type: LOCATION_ERROR,
                     payload: err.message
-                })
+                } )
             )
     }
 }
 export const loadDailyForecast = cityKey => {
     return dispatch => {
-        dispatch({ type: LOADING_DAILY_FORECAST })
-        getDailyForecast(cityKey)
-            .then(data => {
-                dispatch({
+        dispatch( { type: LOADING_DAILY_FORECAST } )
+        getDailyForecast( cityKey )
+            .then( data => {
+                dispatch( {
                     type: DAILY_FORECAST_LOADED,
                     payload: data
-                })
-            })
-            .catch(err =>
-                dispatch({
+                } )
+            } )
+            .catch( err =>
+                dispatch( {
                     type: DAILY_FORECAST_ERROR,
                     payload: err.message
-                })
+                } )
             )
     }
 }
 export const loadFiveDayForecast = cityKey => {
     return dispatch => {
-        dispatch({ type: LOADING_FIVE_DAY_FORECAST })
-        getFiveDayForecast(cityKey)
-            .then(data => {
-                dispatch({
+        dispatch( { type: LOADING_FIVE_DAY_FORECAST } )
+        getFiveDayForecast( cityKey )
+            .then( data => {
+                dispatch( {
                     type: FIVE_DAY_FORECAST_LOADED,
                     payload: data
-                })
-            })
-            .catch(err =>
-                dispatch({
+                } )
+            } )
+            .catch( err =>
+                dispatch( {
                     type: FIVE_DAY_FORECAST_ERROR,
                     payload: err.message
-                })
+                } )
             )
     }
 }
-export const loadCitiesList = (inputValue, callback) => {
+export const loadCitiesList = ( inputValue, callback ) => {
     return dispatch => {
-        dispatch({ type: LOADING_CITIES_LIST })
+        dispatch( { type: LOADING_CITIES_LIST } )
         let tempArr = []
-        getAutoComplete(inputValue)
-            .then(data => {
-                dispatch({
+        getAutoComplete( inputValue )
+            .then( data => {
+                dispatch( {
                     type: CITIES_LIST_LOADED
-                })
-                data.forEach(i => {
-                    tempArr.push({ label: i.LocalizedName, key: i.Key })
-                })
-                callback(tempArr)
-            })
-            .catch(err =>
-                dispatch({
+                } )
+                data.forEach( i => {
+                    tempArr.push( { label: i.LocalizedName, key: i.Key } )
+                } )
+                callback( tempArr )
+            } )
+            .catch( err =>
+                dispatch( {
                     type: CITIES_LIST_ERROR,
                     payload: err.message
-                })
+                } )
             )
     }
 }
 export const getSelectedCity = selectedCity => {
     return dispatch => {
-        dispatch({
+        dispatch( {
             type: GET_SELECTED_CITY,
             payload: selectedCity
-        })
+        } )
     }
 }
